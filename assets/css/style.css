@@ -2750,3 +2750,50 @@ a.linkedin-bg:hover {
   height: 500px;
   width: 100%
 }
+    .referenzen-kasten {
+        max-width: 1060px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .referenzen-text-neu, .referenzen-bild-neu {
+        width: 500px;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    .referenzen-text-neu {
+        min-height: 200px;
+        background-color: #c3d7ef;
+        padding: 30px;
+        border-radius: 16px;
+    }
+    .kein-referenzen-text {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+    
+    .referenzen-bild-neu img {
+        max-width: 100%;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    @media screen and (max-width: 800px) {
+        .referenzen-kasten {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        .referenzen-text-neu, .referenzen-bild-neu {
+            width: auto;
+            margin-bottom: 20px;
+        }
+    }
