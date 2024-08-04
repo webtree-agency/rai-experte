@@ -2761,6 +2761,7 @@ a.linkedin-bg:hover {
         width: 500px;
         margin-left: 15px;
         margin-right: 15px;
+        text-align: left !important;
     }
     .referenzen-text-neu {
         min-height: 200px;
