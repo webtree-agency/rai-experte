@@ -71,7 +71,7 @@
 	/* SITEMAIN */
 	/* site-section */
 	.site-section {
-	   padding: 60px 0 100px;
+	   padding: 60px 0 !important;
 	} 
 
 	.heading-separator {
@@ -162,11 +162,11 @@
 @media only screen and (max-width : 767px) {
 	/* CUSTOM RESETS */
 	h1 {
-		font-size: 32px;
+		font-size: 34px;
 	}
 
 	h2 {
-		font-size: 28px;
+		font-size: 30px;
 	}
 
 	p + p {
@@ -176,7 +176,7 @@
 	/* Buttons */
 	.btn {
 		min-width: 140px;
-		font-size: 16px;
+		font-size: 18px;
 	}
 	
 	/* Elements */
@@ -351,7 +351,8 @@
 	.slicknav_nav > li a {
 		display: inline-block;
 		color: #26272d;
-		font-size: 18px;
+		font-size: 24px;
+		margin-top: 5%;
 	}
 
 	.slicknav_arrow {
@@ -397,7 +398,7 @@
 	}
 
 	.hero-text p {
-		font-size: 14px;
+		font-size: 18px;
 		margin: 20px 0 10px;
 	}
 
