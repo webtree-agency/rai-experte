@@ -35,7 +35,7 @@ p {
 
 .parallax {
     /* The image used */
-    background-image: url(../../assets_marco/webelem/Burgm_Startseite_Divider_Text.png);
+    background-image: url(../../assets_marco/webelem/Burgm_Startseite_Divider_Text.webp);
     background-size: 100% !important;
     /* Set a specific height */
     min-height: 300px;
@@ -51,7 +51,7 @@ p {
 
 @media (max-width: 800px) {
     .parallax {
-        background-image: url(../../assets_marco/images/Burgm_Startseite_Divider_Mob_230907.png);
+        background-image: url(../../assets_marco/images/Burgm_Startseite_Divider_Mob_230907.webp);
         background-size: 70% !important;
         background-attachment: scroll; /* Deaktiviere den Parallax-Effekt */
     }
@@ -1131,7 +1131,7 @@ html, body {
 /* HERO
 ================================================== */
 .hero { 
-    background: url(../../assets_marco/webelem/Burgm_Startseite_HGFarbverlauf.png) no-repeat center / cover; 
+    background: url(../../assets_marco/webelem/Burgm_Startseite_HGFarbverlauf.webp) no-repeat center / cover; 
     height: 100%;
     width: 100%;
     display: table;
@@ -1140,7 +1140,7 @@ html, body {
 
 @media (max-width: 800px) {
     .hero {
-        background: url(../../assets_marco/images/handystart.png) no-repeat left / cover;
+        background: url(../../assets_marco/images/handystart.webp) no-repeat left / cover;
         }
 }
 
@@ -1323,17 +1323,17 @@ table h4{
 
 
 .contact-hero {
-    background: url(../../assets_marco/webelem/Burgm_Startseite_HGFarbverlauf_small.png) no-repeat left / cover;
+    background: url(../../assets_marco/webelem/Burgm_Startseite_HGFarbverlauf_small.webp) no-repeat left / cover;
 }
 
 .teilangebote-hero {
-    background: url(../../assets_marco/webelem/Burgm_Startseite_HGFarbverlauf_small.png) no-repeat left / cover; 
+    background: url(../../assets_marco/webelem/Burgm_Startseite_HGFarbverlauf_small.webp) no-repeat left / cover; 
     background-color: #3c98a0 !important;
     left: 0 !important;
 }
 
 .angebote-hero {
-    background: url(../../assets_marco/webelem/Burgm_Startseite_HGFarbverlauf.png) no-repeat center / cover;   
+    background: url(../../assets_marco/webelem/Burgm_Startseite_HGFarbverlauf.webp) no-repeat center / cover;   
 
 }
 .referenzen-section {
@@ -1972,7 +1972,7 @@ th, td {
 /* Section: Map Feature */
 .section-map-feature {
     padding-top: 250px;
-    background: #071021 url(../img/map.png) no-repeat top center / cover; 
+    background: #071021 url(../img/map.webp) no-repeat top center / cover; 
 }
 
 .section-map-feature h2 {
