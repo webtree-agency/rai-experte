@@ -1570,24 +1570,34 @@ th, td {
 }
 
 .containerBild {
-    width: 100%;
-    height: 60vh;
-    background-color: #c2d9f5;
     display: flex;
-    align-items: center;
     justify-content: center;
-    overflow: hidden; /* Verhindert, dass Inhalte aus dem Container herausragen */
-}
-
-.swiper {
-    width: 30%; /* Breite auf 100% setzen, damit sie immer innerhalb des Containers passt */
-}
-
-.imgslide {
-    width: 100%; /* Breite auf 100% setzen, um sicherzustellen, dass das Bild immer innerhalb des Containers passt */
-    height: auto; /* Höhe auf 'auto' setzen, um das Seitenverhältnis des Bildes beizubehalten */
-}
-
+    align-items: center;
+    padding: 10px;
+    max-width: fit-content;
+    margin: 0 auto;
+    background-color: #c2d9f5;
+  }
+  
+  .swiper {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+  }
+  
+  .imgslide {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    margin: 0 auto;
+  }
+  
 .swiper .swiper-button-prev, .swiper .swiper-button-next {
     color: white;
 }
@@ -1611,9 +1621,6 @@ th, td {
     .swiper {
         width: 40%;
     }
-    .containerBild {
-        height: 60vh;
-    }
 }
 
 @media (max-width: 980px) {
@@ -1629,23 +1636,12 @@ th, td {
         width:70%;
         height: fit-content;  
     }
-
-    .containerBild {
-        height: 45vh;
-        background-position: left;
-
-    }
 }
 
 @media (max-width: 650px) {
     .swiper {
         width:70%;
         height: fit-content;  
-    }
-
-    .containerBild {
-        height: 30vh;
-
     }
 
 }
