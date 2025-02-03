@@ -414,15 +414,12 @@
             <div class="container">
                <div class="row">
                   <div class="col-sm-7">
-                     <form action="https://formsubmit.co/7a88f38fe351f5e72bc88b3b2d961ce2" method="POST">
-                        <input type="text" name="_honey" style="display: none;">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="https://rai-experte.ch/erfolg">
+                     <form action="https://usebasin.com/f/88a4f34a2b4f" id="contact_form" method="POST">
                         <div class="row">
                            <div class="col-sm-6">
                               <div class="form-group">
-                                 <label for="name">Vor-/Nachname</label>
-                                 <input required type="text" name="name" class="form-control" id="name">
+                                 <label for="Name">Vor-/Nachname</label>
+                                 <input required type="text" name="Name" class="form-control" id="Name">
                               </div>
                            </div>
                            <div class="col-sm-6">
@@ -433,17 +430,17 @@
                            </div>
                         </div>
                         <div class="form-group">
-                           <label for="message">Telefonnummer</label>
-                           <input class="form-control" name="phone" id="subject"></input>
+                           <label for="Telefonnummer">Telefonnummer</label>
+                           <input type="text" class="form-control" name="Telefonnummer" id="Telefonnummer">
                         </div>
                         <div class="form-group">
-                           <label for="message">Nachricht</label>
-                           <textarea required class="form-control form-control-comment" name="comments,&nbsp;questions" id="message"></textarea>
+                           <label for="Nachricht">Nachricht</label>
+                           <textarea required class="form-control form-control-comment" name="Nachricht" id="Nachricht"></textarea>
                         </div>
                         <div class="text-center">
                            <button type="submit" class="btn btn-green">Senden</button>
                         </div>
-                     </form>
+                     </form>                     
                   </div>
                   <div class="col-sm-5">
                      <div class="contact-info">
@@ -537,6 +534,26 @@
          
          });
       </script>
+            <script>
+               var form = document.getElementById("contact_form");
+               form.onsubmit = function(event) {
+                   event.preventDefault();
+                   var formData = new FormData(form);
+                   var xhr = new XMLHttpRequest();
+                   xhr.open("POST", form.action, true);
+                   xhr.send(formData);
+                   
+                   xhr.onload = function(e) {
+                       if (xhr.status === 200) {
+                           window.location.href = 'erfolg.html';
+                           form.reset();  
+                       } else {
+                           var response = JSON.parse(xhr.response);
+                           window.alert("Hoppla, da ist etwas schief gelaufen. Verusuche es später erneut!")
+                       }
+                   };
+               };
+            </script> 
       <script src="https://kit.fontawesome.com/b5e9345009.js" crossorigin="anonymous"></script>
    </body>
 </html>
