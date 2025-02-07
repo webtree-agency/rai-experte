@@ -414,13 +414,13 @@
             <div class="container">
                <div class="row">
                   <div class="col-sm-7">
-                        <form action="https://usebasin.com/f/88a4f34a2b4f" id="contact_form" method="POST" enctype="multipart/form-data" data-basin-form="true" data-basin-success-action='redirect' data-basin-spam-protection='recaptcha'>
+                        <form action="https://usebasin.com/f/88a4f34a2b4f" id="contact_form" method="POST" enctype="multipart/form-data" data-basin-form="true" data-basin-success-action='render' data-basin-spam-protection='recaptcha'>
                         <input type="hidden" name="_gotcha">
                         <div class="row">
                            <div class="col-sm-6">
                               <div class="form-group">
                                  <label for="Name">Vor-/Nachname</label>
-                                 <input required type="text" name="Name" class="form-control" id="Name" pattern="[A-Za-zÄÖÜäöüss ]{2,}" title="Nur Buchstaben und Leerzeichen">
+                                 <input type="text" name="Name" class="form-control" id="Name" pattern="[A-Za-zÄÖÜäöüss ]{2,}" title="Nur Buchstaben und Leerzeichen">
                               </div>
                            </div>
                            <div class="col-sm-6">
@@ -432,7 +432,7 @@
                         </div>
                         <div class="form-group">
                            <label for="Telefonnummer">Telefonnummer</label>
-                           <input required type="text" name="Telefonnummer" class="form-control" id="Telefonnummer" pattern="^\+?\d{7,15}$" title="Nur Zahlen und '+' erlaubt">
+                           <input required type="tel" name="Telefonnummer" class="form-control" id="Telefonnummer">
                         </div>
                         <div class="form-group">
                            <label for="Nachricht">Nachricht</label>
@@ -444,9 +444,7 @@
                         <div class="text-center">
                            <button type="submit" class="btn btn-green">Senden</button>
                         </div>
-                     </form> 
-                     <div class="w-form-done" style="display: none;">Thank you for your submission! 🚀🚀🚀</div>
-                     <div class="w-form-fail" style="display: none;">Oops, something went wrong 🚨🚨🚨</div>                 
+                     </form>                 
                   </div>
                   <div class="col-sm-5">
                      <div class="contact-info">
@@ -541,6 +539,21 @@
          
          });
       </script>
+            <script>
+               var form = document.getElementById("contact_form");
+               form.onsubmit = function(event) {
+                   event.preventDefault();
+                   var formData = new FormData(form);
+                   var xhr = new XMLHttpRequest();
+                   xhr.open("POST", form.action, true);
+                   xhr.send(formData);
+                   
+                   xhr.onload = function(e) {
+                        window.location.href = 'erfolg.html';
+                        form.reset();  
+                   };
+               };
+            </script> 
       <script src="https://kit.fontawesome.com/b5e9345009.js" crossorigin="anonymous"></script>
    </body>
 </html>
