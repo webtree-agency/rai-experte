@@ -2794,3 +2794,7 @@ a.linkedin-bg:hover {
             margin-bottom: 20px;
         }
     }
+
+    .grecaptcha-badge {
+        display: none !important;
+    }

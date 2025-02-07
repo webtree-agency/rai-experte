@@ -414,12 +414,13 @@
             <div class="container">
                <div class="row">
                   <div class="col-sm-7">
-                     <form action="https://usebasin.com/f/88a4f34a2b4f" id="contact_form" method="POST">
+                        <form action="https://usebasin.com/f/88a4f34a2b4f" id="contact_form" method="POST" enctype="multipart/form-data" data-basin-form="true" data-basin-success-action='redirect' data-basin-spam-protection='recaptcha'>
+                        <input type="hidden" name="_gotcha">
                         <div class="row">
                            <div class="col-sm-6">
                               <div class="form-group">
                                  <label for="Name">Vor-/Nachname</label>
-                                 <input type="text" name="Name" class="form-control" id="Name" pattern="[A-Za-zÄÖÜäöüß ]{2,}" title="Nur Buchstaben und Leerzeichen">
+                                 <input required type="text" name="Name" class="form-control" id="Name" pattern="[A-Za-zÄÖÜäöüss ]{2,}" title="Nur Buchstaben und Leerzeichen">
                               </div>
                            </div>
                            <div class="col-sm-6">
@@ -431,19 +432,21 @@
                         </div>
                         <div class="form-group">
                            <label for="Telefonnummer">Telefonnummer</label>
-                           <input type="text" name="Telefonnummer" class="form-control" id="Telefonnummer" pattern="^\+?\d{7,15}$" title="Nur Zahlen und '+' erlaubt">
+                           <input required type="text" name="Telefonnummer" class="form-control" id="Telefonnummer" pattern="^\+?\d{7,15}$" title="Nur Zahlen und '+' erlaubt">
                         </div>
                         <div class="form-group">
                            <label for="Nachricht">Nachricht</label>
                            <textarea required class="form-control form-control-comment" name="Nachricht" id="Nachricht"
-                           pattern="^[a-zA-Z0-9äöüÄÖÜß .,!?-]{5,500}$" 
+                           pattern="^[a-zA-Z0-9äöüÄÖÜss .,!?-]{5,500}$" 
                            title="Keine Klammern oder Sonderzeichen erlaubt. Nur Buchstaben, Zahlen und .,!?-">
                            </textarea>
                         </div>
                         <div class="text-center">
                            <button type="submit" class="btn btn-green">Senden</button>
                         </div>
-                     </form>                     
+                     </form> 
+                     <div class="w-form-done" style="display: none;">Thank you for your submission! 🚀🚀🚀</div>
+                     <div class="w-form-fail" style="display: none;">Oops, something went wrong 🚨🚨🚨</div>                 
                   </div>
                   <div class="col-sm-5">
                      <div class="contact-info">
@@ -510,6 +513,7 @@
             </div>
          </div>
       </footer>
+      <script src="https://js.usebasin.com/v2.3.0.min.js" async></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
       <script src="assets/js/bootstrap.min.js"></script>
       <script src="assets/js/bootstrap-select.min.js"></script>
@@ -537,26 +541,6 @@
          
          });
       </script>
-            <script>
-               var form = document.getElementById("contact_form");
-               form.onsubmit = function(event) {
-                   event.preventDefault();
-                   var formData = new FormData(form);
-                   var xhr = new XMLHttpRequest();
-                   xhr.open("POST", form.action, true);
-                   xhr.send(formData);
-                   
-                   xhr.onload = function(e) {
-                       if (xhr.status === 200) {
-                           window.location.href = 'erfolg.html';
-                           form.reset();  
-                       } else {
-                           var response = JSON.parse(xhr.response);
-                           window.alert("Hoppla, da ist etwas schief gelaufen. Verusuche es später erneut!")
-                       }
-                   };
-               };
-            </script> 
       <script src="https://kit.fontawesome.com/b5e9345009.js" crossorigin="anonymous"></script>
    </body>
 </html>
