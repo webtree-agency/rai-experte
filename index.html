@@ -420,7 +420,7 @@
                            <div class="col-sm-6">
                               <div class="form-group">
                                  <label for="Name">Vor-/Nachname</label>
-                                 <input type="text" name="Name" class="form-control" id="Name" pattern="[A-Za-zÄÖÜäöüss ]{2,}" title="Nur Buchstaben und Leerzeichen">
+                                 <input required type="text" name="Name" class="form-control" id="Name" pattern="[A-Za-zÄÖÜäöüss ]{2,}" title="Nur Buchstaben und Leerzeichen">
                               </div>
                            </div>
                            <div class="col-sm-6">
@@ -436,10 +436,7 @@
                         </div>
                         <div class="form-group">
                            <label for="Nachricht">Nachricht</label>
-                           <textarea required class="form-control form-control-comment" name="Nachricht" id="Nachricht"
-                           pattern="^[a-zA-Z0-9äöüÄÖÜss .,!?-]{5,500}$" 
-                           title="Keine Klammern oder Sonderzeichen erlaubt. Nur Buchstaben, Zahlen und .,!?-">
-                           </textarea>
+                           <textarea required class="form-control form-control-comment" name="Nachricht" id="Nachricht"></textarea>
                         </div>
                         <div class="text-center">
                            <button type="submit" class="btn btn-green">Senden</button>
