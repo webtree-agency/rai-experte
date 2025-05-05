@@ -1501,7 +1501,7 @@ th, td {
     width: 90%; /* 90% Breite der verfügbaren Seite */
     margin: 0 auto; /* Zentriert die Tabelle auf der Seite */
     border-collapse: collapse; /* Rand zwischen den Zellen entfernen */
-    display: none !important; /* Standardmäßig ausblenden */
+    display: none !important; /* Standardmässig ausblenden */
 }
 
 /* CSS für die Zellen in der Tabelle */
