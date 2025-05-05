@@ -2798,3 +2798,143 @@ a.linkedin-bg:hover {
     .grecaptcha-badge {
         display: none !important;
     }
+
+    .modern-carousel {
+        background-color: #f8f8f8;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        margin-bottom: 40px;
+    }
+    
+    .carousel-control {
+        background-image: none !important;
+        color: #008891;
+        opacity: 1;
+        text-shadow: none;
+        transition: all 0.3s ease;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 5%; /* oder gewünschte Breite */
+    }
+    .carousel-control:hover {
+        color: #006064;
+    }
+    
+    .carousel-indicators {
+        bottom: -40px;
+    }
+    
+    .carousel-indicators li {
+        border: 1px solid #008891;
+        margin: 0 3px;
+    }
+    
+    .carousel-indicators .active {
+        background-color: #008891;
+        margin: 0 3px;
+    }
+    
+    /* Modern Referenz Layout */
+    .modern-referenz {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        min-height: 300px;
+        padding: 30px;
+    }
+    
+    .referenz-bild {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+    
+    .referenz-bild img {
+        max-width: 100%;
+        max-height: 150px;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+    }
+    
+    .referenz-bild img:hover {
+        transform: scale(1.05);
+    }
+    
+    .referenz-content {
+        flex: 2;
+        padding: 20px;
+        text-align: left;
+    }
+    
+    .referenz-zitat {
+        position: relative;
+        background-color: white;
+        padding: 30px 25px 20px;
+        border-radius: 6px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        margin-bottom: 20px;
+    }
+    
+    .referenz-zitat:after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 30px;
+        width: 20px;
+        height: 20px;
+        background-color: white;
+        transform: rotate(45deg);
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.05);
+    }
+    
+    .quote-icon {
+        position: absolute;
+        top: 10px;
+        left: 15px;
+        color: #008891;
+        opacity: 0.4;
+        font-size: 20px;
+    }
+    
+    .referenz-zitat p {
+        font-style: italic;
+        color: #666;
+        margin: 0;
+        line-height: 1.6;
+    }
+    
+    .referenz-autor {
+        padding-left: 25px;
+    }
+    
+    .referenz-autor p {
+        margin: 0;
+        color: #333;
+    }
+    
+    /* Für mobile Ansicht */
+    @media (max-width: 768px) {
+        .modern-referenz {
+            flex-direction: column;
+            min-height: 400px;
+        }
+        
+        .referenz-bild {
+            margin-bottom: 20px;
+        }
+        
+        .referenz-content {
+            width: 100%;
+        }
+    }
+
+    .projekt-info {
+        font-size: 0.85em;
+        color: #666;
+        margin-top: 5px;
+        font-style: italic;
+    }
