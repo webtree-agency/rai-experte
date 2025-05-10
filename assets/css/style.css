@@ -2818,6 +2818,9 @@ a.linkedin-bg:hover {
         justify-content: center;
         width: 5%; /* oder gewünschte Breite */
     }
+    .carousel-control.white-control {
+        color: #fff;
+    }
     .carousel-control:hover {
         color: #006064;
     }
@@ -2937,4 +2940,30 @@ a.linkedin-bg:hover {
         color: #666;
         margin-top: 5px;
         font-style: italic;
+    }
+
+    .marco-images-compact .marco-image-box {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        height: 350px;
+        margin-bottom: 20px;
+    }
+    
+    .marco-images-compact .marco-image-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        transition: transform 0.3s ease;
+    }
+    
+    .marco-images-compact .marco-image-box:hover img {
+        transform: scale(1.05);
+    }
+    
+    /* Speziell für das Hochformat-Bild */
+    .marco-images-compact .col-md-4:last-child .marco-image-box img {
+        object-position: center top;
     }
