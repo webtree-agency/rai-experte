@@ -224,6 +224,18 @@
               </table>
             </section>
          </section>
+
+         <!-- Eventbrite Events Section -->
+         <section class="site-section subpage-site-section section-events" style="background-color: #f0f5fb;">
+            <div class="container">
+               <h1 class="headersectionh2">VERANSTALTUNGEN</h1>
+               <p style="text-align: center; margin-bottom: 40px; font-size: 18px;">Entdecken Sie meine aktuellen Schulungen und Veranstaltungen</p>
+
+               <!-- Eventbrite Widget -->
+               <div id="eventbrite-widget-container"></div>
+            </div>
+         </section>
+
          <section id="ubermich" class="ubermich-section subpage-site-section site-section">
             <div class="container">
                <h1 class="headersectionh2ubermich">ÜBER MICH</h1>
@@ -751,7 +763,19 @@
                         form.reset();  
                    };
                };
-            </script> 
+            </script>
+
+      <!-- Eventbrite Widget Script -->
+      <script src="https://www.eventbrite.com/static/widgets/eb_widgets.js"></script>
+      <script type="text/javascript">
+         window.EBWidgets.createWidget({
+            widgetType: 'checkout',
+            eventId: '117360848231',
+            iframeContainerId: 'eventbrite-widget-container',
+            iframeContainerHeight: 600
+         });
+      </script>
+
       <script src="https://kit.fontawesome.com/b5e9345009.js" crossorigin="anonymous"></script>
    </body>
 </html>
