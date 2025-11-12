@@ -227,19 +227,22 @@
 <!-- Pretix Widget Script -->
 <script src="https://pretix.eu/widget/v1.de.js" async></script>
 
-<section class="site-section subpage-site-section section-events" style="background-color: #f0f5fb;">
+<section class="site-section subpage-site-section section-events py-5" style="background-color: #f0f5fb;">
   <div class="container">
-    <h1 class="headersectionh2">VERANSTALTUNGEN</h1>
-    <p style="text-align: center; margin-bottom: 40px; font-size: 18px;">
+    <h1 class="text-center mb-3">VERANSTALTUNGEN</h1>
+    <p class="text-center mb-5 fs-5">
       Entdecken Sie meine aktuellen Schulungen und Veranstaltungen
     </p>
 
-    <div class="pretix-container" style="max-width: 900px; margin: 0 auto;">
-      <pretix-widget event="https://pretix.eu/webtree/"></pretix-widget>
+    <div class="pretix-container mx-auto" style="max-width: 1100px;">
+      <pretix-widget event="https://pretix.eu/webtree/"
+                     style-src="https://rai-experte.ch/assets/css/pretix-widget.css">
+      </pretix-widget>
       <noscript><a href="https://pretix.eu/webtree/">Tickets</a></noscript>
     </div>
   </div>
 </section>
+
 
          <section id="ubermich" class="ubermich-section subpage-site-section site-section">
             <div class="container">

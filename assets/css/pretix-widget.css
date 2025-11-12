@@ -1,0 +1,43 @@
+body {
+  font-family: 'Inter', sans-serif;
+  background: #fff;
+  color: #222;
+}
+
+/* Karten-Styling */
+.event-listing .event {
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  margin-bottom: 24px;
+  background: #fff;
+}
+
+.event-listing .event:hover {
+  transform: translateY(-4px);
+  transition: 0.2s;
+}
+
+.event .title {
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #0d3b66;
+}
+
+.event .date, .event .location {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.event .action a {
+  background: #0d6efd;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.event .action a:hover {
+  background: #0b5ed7;
+}
