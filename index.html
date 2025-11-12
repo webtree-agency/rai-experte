@@ -224,17 +224,22 @@
               </table>
             </section>
          </section>
+<!-- Pretix Widget Script -->
+<script src="https://pretix.eu/widget/v1.de.js" async></script>
 
-         <!-- Eventbrite Events Section -->
-         <section class="site-section subpage-site-section section-events" style="background-color: #f0f5fb;">
-            <div class="container">
-               <h1 class="headersectionh2">VERANSTALTUNGEN</h1>
-               <p style="text-align: center; margin-bottom: 40px; font-size: 18px;">Entdecken Sie meine aktuellen Schulungen und Veranstaltungen</p>
+<section class="site-section subpage-site-section section-events" style="background-color: #f0f5fb;">
+  <div class="container">
+    <h1 class="headersectionh2">VERANSTALTUNGEN</h1>
+    <p style="text-align: center; margin-bottom: 40px; font-size: 18px;">
+      Entdecken Sie meine aktuellen Schulungen und Veranstaltungen
+    </p>
 
-               <!-- Eventbrite Widget -->
-               <div id="eventbrite-widget-container"></div>
-            </div>
-         </section>
+    <div class="pretix-container" style="max-width: 900px; margin: 0 auto;">
+      <pretix-widget event="https://pretix.eu/webtree/"></pretix-widget>
+      <noscript><a href="https://pretix.eu/webtree/">Tickets</a></noscript>
+    </div>
+  </div>
+</section>
 
          <section id="ubermich" class="ubermich-section subpage-site-section site-section">
             <div class="container">
@@ -892,17 +897,6 @@
                    };
                };
             </script>
-
-      <!-- Eventbrite Widget Script -->
-      <script src="https://www.eventbrite.com/static/widgets/eb_widgets.js"></script>
-      <script type="text/javascript">
-         window.EBWidgets.createWidget({
-            widgetType: 'checkout',
-            eventId: '117360848231',
-            iframeContainerId: 'eventbrite-widget-container',
-            iframeContainerHeight: 600
-         });
-      </script>
 
       <script src="https://kit.fontawesome.com/b5e9345009.js" crossorigin="anonymous"></script>
    </body>
