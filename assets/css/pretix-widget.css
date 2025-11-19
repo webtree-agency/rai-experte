@@ -131,7 +131,7 @@
 .pretix-widget-action button, .pretix-widget-resume-button {
     background: #007F8B !important;
     color: #fff !important;
-    font-size: 14rem !important;
+    font-size: 14px !important;
     padding: 14px 26px !important;
     border-radius: 999px !important;
     border: none;
