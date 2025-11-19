@@ -128,10 +128,10 @@
  * Anmelden / Submit Button
  **********************************************/
 
-.pretix-widget-action button {
+.pretix-widget-action button, .pretix-widget-resume-button {
     background: #007F8B !important;
     color: #fff !important;
-    font-size: 1.2rem !important;
+    font-size: 14rem !important;
     padding: 14px 26px !important;
     border-radius: 999px !important;
     border: none;
@@ -141,7 +141,7 @@
     margin-top: 24px;
 }
 
-.pretix-widget-action button:hover {
+.pretix-widget-action button:hover, .pretix-widget-resume-button:hover {
     background: #005f66 !important;
 }
 
