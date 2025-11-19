@@ -1,43 +1,88 @@
-body {
-  font-family: 'Inter', sans-serif;
-  background: #fff;
-  color: #222;
+/**********************************************
+ * Pretix Event Grid – Custom Redesign
+ **********************************************/
+
+/* Gesamter Container */
+.pretix-widget-event-list {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 30px;
 }
 
-/* Karten-Styling */
-.event-listing .event {
-  border: 1px solid #dee2e6;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  margin-bottom: 24px;
-  background: #fff;
+/* Event Card */
+.pretix-widget-event-list-entry {
+    display: flex !important;
+    flex-direction: column;
+    padding: 22px;
+    border-radius: 14px;
+    text-decoration: none !important;
+    background: #ffffff;
+    border: 1px solid #d8e2ef;
+    transition: all 0.25s ease;
+    min-height: 200px;
 }
 
-.event-listing .event:hover {
-  transform: translateY(-4px);
-  transition: 0.2s;
+/* Hover Effekt */
+.pretix-widget-event-list-entry:hover {
+    border-color: #2b72ff;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    transform: translateY(-4px);
 }
 
-.event .title {
-  font-weight: 600;
-  font-size: 1.25rem;
-  color: #0d3b66;
+/* Titel */
+.pretix-widget-event-list-entry-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #0c2a4a;
+    margin-bottom: 10px;
 }
 
-.event .date, .event .location {
-  color: #555;
-  font-size: 0.95rem;
+/* Datum */
+.pretix-widget-event-list-entry-date {
+    font-size: 0.95rem;
+    color: #435b77;
+    margin-bottom: 6px;
 }
 
-.event .action a {
-  background: #0d6efd;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  text-decoration: none;
+/* Ort */
+.pretix-widget-event-list-entry-location {
+    font-size: 0.95rem;
+    color: #5a6f85;
+    margin-bottom: 18px;
 }
 
-.event .action a:hover {
-  background: #0b5ed7;
+/* Verfügbarkeit / Button */
+.pretix-widget-event-list-entry-availability span {
+    font-size: 0.95rem;
+    background: #2b72ff;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    display: inline-block;
+    transition: background 0.25s;
+}
+
+.pretix-widget-event-list-entry:hover .pretix-widget-event-list-entry-availability span {
+    background: #1c54c7;
+}
+
+
+/**********************************************
+ * Mobile Optimierung
+ **********************************************/
+
+@media (max-width: 480px) {
+    .pretix-widget-event-list-entry {
+        padding: 18px;
+    }
+
+    .pretix-widget-event-list {
+        gap: 16px;
+    }
+}
+
+.pretix-widget-attribution {
+  display: none !important;
 }
