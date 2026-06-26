@@ -1,0 +1,65 @@
+{
+  "name": "rai-experte-website",
+  "version": "0.1.0",
+  "description": "BURGMEIJER RAI-Experte — Next.js + Payload CMS (Migration der statischen Website)",
+  "private": true,
+  "license": "UNLICENSED",
+  "type": "module",
+  "scripts": {
+    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
+    "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
+    "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css,md}\" \"*.{md,json,mjs}\"",
+    "type-check": "tsc --noEmit",
+    "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
+    "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
+    "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
+    "db:migrate": "cross-env NODE_OPTIONS=--no-deprecation payload migrate",
+    "db:fresh": "cross-env NODE_OPTIONS=--no-deprecation payload migrate:fresh",
+    "seed": "cross-env NODE_OPTIONS=--no-deprecation node --import tsx --env-file=.env scripts/seed.ts",
+    "preflight": "pnpm type-check && pnpm lint && pnpm build"
+  },
+  "dependencies": {
+    "@payloadcms/db-postgres": "3.84.1",
+    "@payloadcms/next": "3.84.1",
+    "@payloadcms/richtext-lexical": "3.84.1",
+    "@payloadcms/storage-s3": "3.84.1",
+    "@payloadcms/ui": "3.84.1",
+    "clsx": "^2.1.1",
+    "embla-carousel-autoplay": "^8.5.2",
+    "embla-carousel-react": "^8.5.2",
+    "graphql": "^16.10.0",
+    "lucide-react": "^0.468.0",
+    "next": "15.4.11",
+    "payload": "3.84.1",
+    "react": "19.2.1",
+    "react-dom": "19.2.1",
+    "resend": "^6.14.0",
+    "sharp": "0.33.5",
+    "tailwind-merge": "^3.0.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.5",
+    "@tailwindcss/postcss": "^4.0.0",
+    "@tailwindcss/typography": "^0.5.16",
+    "@types/node": "^22.10.5",
+    "@types/react": "19.2.1",
+    "@types/react-dom": "19.2.1",
+    "cross-env": "^7.0.3",
+    "eslint": "^9.18.0",
+    "eslint-config-next": "15.4.11",
+    "prettier": "^3.4.2",
+    "prettier-plugin-tailwindcss": "^0.6.9",
+    "tailwindcss": "^4.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  },
+  "pnpm": {
+    "ignoredBuiltDependencies": ["sharp", "unrs-resolver"]
+  },
+  "engines": {
+    "node": "^20 || ^22"
+  },
+  "packageManager": "pnpm@10.28.0"
+}
