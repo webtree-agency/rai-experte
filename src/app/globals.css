@@ -36,7 +36,7 @@
 
   /* ─── Links / States ───────────────────────────────────────────── */
   --color-link: #9fa3a7;
-  --color-muted: #8c8f94; /* Footer-Links, Icons */
+  --color-muted: #5f636a; /* Footer-Links, Icons — dunkler für bessere Lesbarkeit */
   --color-quote: #666666; /* Zitat-Text */
   --color-form-focus: #2d2d2d;
   --color-border-light: #eeeeee;
@@ -130,6 +130,19 @@ p {
     color: #ffffff;
   }
 
+  /* Gefüllter Haupt-CTA (solid Petrol) — klar abgesetzt von Outline-Buttons. */
+  .btn-fill {
+    background-color: var(--color-petrol);
+    color: #ffffff;
+    border: 1px solid var(--color-petrol);
+  }
+  .btn-fill:hover,
+  .btn-fill:focus-visible {
+    background-color: var(--color-petrol-dark);
+    border-color: var(--color-petrol-dark);
+    color: #ffffff;
+  }
+
   /* Haupt-CTA: transparent + schwarzer Rand, Hover → Petrol-Rand. */
   .btn-green {
     background-color: transparent;
@@ -166,6 +179,14 @@ p {
     color: #000000;
   }
 
+  /* Auf Handy: Buttons immer volle Breite, kein min-width-Overflow. */
+  @media (max-width: 640px) {
+    .btn {
+      width: 100%;
+      min-width: 0;
+    }
+  }
+
   /* ─── Headings ─────────────────────────────────────────────────── */
   /* Hero-Headline (h1) — 62 → 52 → 42 → 34 px. */
   .heading-hero {
@@ -182,7 +203,7 @@ p {
   .heading-section {
     font-size: 42px;
     line-height: 1.15;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--color-petrol);
     text-align: center;
   }

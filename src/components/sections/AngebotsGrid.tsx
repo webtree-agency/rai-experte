@@ -32,13 +32,16 @@ export function AngebotsGrid({ angebote }: { angebote: Angebote[] }) {
   return (
     <>
       {/* Filter */}
-      <ul className="mb-12 flex flex-wrap justify-center gap-3">
+      <ul className="mb-12 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:justify-center">
         {FILTERS.map((f) => (
           <li key={f.value}>
             <button
               type="button"
               onClick={() => onFilter(f.value)}
-              className={cn('btn btn-green !h-11 !min-w-[120px]', active === f.value && 'border-petrol')}
+              className={cn(
+                'btn btn-green !h-11 !w-full sm:!w-auto sm:!min-w-[120px]',
+                active === f.value && 'border-petrol',
+              )}
             >
               {f.label}
             </button>

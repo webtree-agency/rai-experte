@@ -72,7 +72,7 @@ export function AnmeldeFormular({ veranstaltungId, ausgebucht }: Props) {
         </p>
       )}
 
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-col items-start gap-3">
         <button type="submit" disabled={pending} className="btn btn-green disabled:opacity-60">
           {pending ? 'Senden …' : 'Anmeldung absenden'}
         </button>

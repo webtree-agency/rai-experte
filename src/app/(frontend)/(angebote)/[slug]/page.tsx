@@ -7,13 +7,13 @@
  * 3 anderen Angeboten.
  */
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { RichText } from '@/components/ui/RichText'
 import { Reveal } from '@/components/ui/Reveal'
 import { SubpageHero } from '@/components/sections/SubpageHero'
 import { AngebotCard } from '@/components/sections/AngebotCard'
 import { TarifPanel } from '@/components/sections/TarifPanel'
+import { KontaktFormular } from '@/components/sections/KontaktFormular'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { getAngebot, getAngebote, getPreise } from '@/lib/cms'
 import { serviceSchema } from '@/lib/jsonld'
@@ -53,26 +53,38 @@ export default async function AngebotPage({ params }: { params: Promise<{ slug: 
     <>
       <JsonLd data={serviceSchema(angebot)} />
 
-      <SubpageHero eyebrow={`Angebot ${angebot.nummer}`} title={angebot.titel} />
+      <SubpageHero
+        eyebrow={`Angebot ${angebot.nummer}`}
+        title={angebot.titel}
+        backHref="/#angebot"
+      />
 
-      {/* Beschreibung + Tarife + CTAs */}
+      {/* Links: Beschreibung + Tarife · Rechts: Kontaktformular */}
       <section className="section-pad-sub py-16 md:py-24">
-        <div className="site-container max-w-3xl">
-          <Reveal>
-            <h2 className="heading-sub text-petrol">Beschreibung</h2>
-            <RichText data={angebot.beschreibung} className="mt-5" />
+        <div className="site-container">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
+            {/* Links */}
+            <Reveal>
+              <h2 className="heading-sub text-petrol">Beschreibung</h2>
+              <RichText data={angebot.beschreibung} className="mt-5" />
+              <div className="mt-10">
+                <TarifPanel preise={preise} align="start" />
+              </div>
+            </Reveal>
 
-            <div className="mt-10 flex flex-wrap gap-4">
-              <Link href="/#kontakt" className="btn btn-green">
-                Kontakt
-              </Link>
-              <Link href="/#angebot" className="btn btn-border">
-                Zurück
-              </Link>
-            </div>
-
-            <TarifPanel preise={preise} />
-          </Reveal>
+            {/* Rechts: Kontaktformular */}
+            <Reveal delay={100}>
+              <div className="rounded-2xl bg-surface-blue p-6 sm:p-8 lg:p-10">
+                <h2 className="heading-sub text-petrol">Kontakt aufnehmen</h2>
+                <p className="mt-3 text-[17px] font-light text-body">
+                  Fragen zu diesem Angebot? Schreiben Sie mir – ich melde mich gerne bei Ihnen.
+                </p>
+                <div className="mt-6">
+                  <KontaktFormular />
+                </div>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 

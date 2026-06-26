@@ -12,7 +12,7 @@ import { Header } from '@/components/site/Header'
 import { Footer } from '@/components/site/Footer'
 import { ScrollToTop } from '@/components/site/ScrollToTop'
 import { JsonLd } from '@/components/seo/JsonLd'
-import { getKontakt, getSeoDefaults } from '@/lib/cms'
+import { getAngebote, getKontakt, getSeoDefaults } from '@/lib/cms'
 import { localBusinessSchema } from '@/lib/jsonld'
 import { SITE_URL, SITE_NAME, OG_DEFAULT } from '@/lib/site'
 import { ASSETS } from '@/lib/assets'
@@ -45,7 +45,11 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function FrontendLayout({ children }: { children: React.ReactNode }) {
-  const [seo, kontakt] = await Promise.all([getSeoDefaults(), getKontakt()])
+  const [seo, kontakt, angebote] = await Promise.all([
+    getSeoDefaults(),
+    getKontakt(),
+    getAngebote(),
+  ])
   const siteTitle = seo?.siteTitle ?? 'BURGMEIJER RAI-Experte'
   const linkedin = kontakt?.linkedin ?? 'https://www.linkedin.com/in/marco-BURGMEIJER-7408641a5/'
 
@@ -55,7 +59,7 @@ export default async function FrontendLayout({ children }: { children: React.Rea
         <JsonLd data={localBusinessSchema(kontakt)} />
         <Header siteTitle={siteTitle} linkedin={linkedin} />
         <main>{children}</main>
-        <Footer siteTitle={siteTitle} kontakt={kontakt} />
+        <Footer siteTitle={siteTitle} kontakt={kontakt} angebote={angebote} />
         <ScrollToTop />
       </body>
     </html>

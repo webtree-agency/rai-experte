@@ -5,18 +5,24 @@
  * Daten aus dem Preise-Global (eine Quelle für Startseite + Angebots-Seiten).
  */
 import { useState } from 'react'
+import { cn } from '@/lib/utils'
 import type { Preise } from '@/payload-types'
 
-type Props = { preise: Preise | null }
+type Props = { preise: Preise | null; align?: 'center' | 'start' }
 
-export function TarifPanel({ preise }: Props) {
+export function TarifPanel({ preise, align = 'center' }: Props) {
   const [open, setOpen] = useState(false)
   const zeilen = preise?.zeilen ?? []
 
   if (zeilen.length === 0) return null
 
   return (
-    <div className="mt-12 flex flex-col items-center">
+    <div
+      className={cn(
+        'flex w-full flex-col',
+        align === 'start' ? 'items-start' : 'mt-12 items-center',
+      )}
+    >
       <button type="button" onClick={() => setOpen((v) => !v)} className="btn btn-border">
         {open ? 'Tarife schliessen' : 'Tarife öffnen'}
       </button>

@@ -29,9 +29,13 @@ export function Header({ siteTitle, linkedin }: Props) {
 
   return (
     <header className="absolute inset-x-0 top-0 z-50">
-      <div className="site-container flex items-center justify-between py-6 md:py-8">
-        <Link href="/" onClick={close} className="text-xl text-white md:text-2xl">
-          <SiteTitle title={siteTitle} />
+      <div className="site-container flex items-center justify-between gap-3 py-6 md:py-8">
+        <Link
+          href="/"
+          onClick={close}
+          className="min-w-0 shrink truncate text-lg text-white sm:text-xl md:text-2xl"
+        >
+          <SiteTitle title={siteTitle} className="max-w-full truncate align-bottom" />
         </Link>
 
         {/* Desktop-Nav */}
