@@ -33,7 +33,7 @@ export function TarifPanel({ preise, align = 'center' }: Props) {
             {zeilen.map((z, i) => (
               <div key={z.id ?? i} className="grid grid-cols-1 gap-1 px-6 py-4 sm:grid-cols-[1fr_1.4fr] sm:gap-6">
                 <dt className="font-semibold text-ink">{z.titel}</dt>
-                <dd className="whitespace-pre-line font-light text-body">{z.beschreibung}</dd>
+                <dd className="whitespace-pre-line font-normal text-body">{z.beschreibung}</dd>
               </div>
             ))}
           </dl>

@@ -329,7 +329,7 @@ Header → Hero → Über-mich-Intro → **Angebote (Filter + 4 Kacheln + Tarif-
    kein Basin, kein Pretix).
 7. SEO: Metadata, sitemap, robots, Redirects (inkl. `.html`), JSON-LD, `lang="de-CH"`.
 8. Responsive prüfen (Mobile-Hamburger, Carousel, Parallax-Mobile).
-9. Build muss durchlaufen (`next build`), Admin (`/admin`) & R2-Upload funktionieren.
+9. Build muss durchplaufen (`next build`), Admin (`/admin`) & R2-Upload funktionieren.
 
 **Sprache:** Alle Inhalte Schweizer Hochdeutsch („ss" statt „ß").
 **Nicht ändern:** Slugs, Anker, externe URLs (LinkedIn, Webtree), Kontaktdaten, UID,

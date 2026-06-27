@@ -26,7 +26,7 @@ export function Footer({ siteTitle, kontakt, angebote = [] }: Props) {
           <Link href="/" className="text-2xl text-ink">
             <SiteTitle title={siteTitle} />
           </Link>
-          <p className="max-w-[34ch] text-[15px] font-light leading-relaxed text-body">
+          <p className="max-w-[34ch] text-[15px] font-normal leading-relaxed text-body">
             Beratung &amp; Schulung für eine einfache, krankenkassentaugliche Pflegedokumentation.
           </p>
           <a
@@ -72,7 +72,7 @@ export function Footer({ siteTitle, kontakt, angebote = [] }: Props) {
             </li>
             <li className="flex items-start gap-3">
               <MapPin size={17} className="mt-0.5 shrink-0 text-petrol" />
-              <span className="font-light">{adresse}</span>
+              <span className="font-normal">{adresse}</span>
             </li>
           </ul>
         </div>

@@ -41,7 +41,7 @@ export function FormField({
 
   return (
     <div className="flex flex-col">
-      <label htmlFor={name} className="mb-2 text-sm font-light text-ink">
+      <label htmlFor={name} className="mb-2 text-sm font-normal text-ink">
         {label}
       </label>
       {multiline ? (

@@ -66,7 +66,10 @@ export default async function AngebotPage({ params }: { params: Promise<{ slug: 
             {/* Links */}
             <Reveal>
               <h2 className="heading-sub text-petrol">Beschreibung</h2>
-              <RichText data={angebot.beschreibung} className="mt-5" />
+              <RichText
+                data={angebot.beschreibung}
+                className="mt-5 prose-p:text-[18px] prose-p:leading-relaxed prose-li:text-[18px]"
+              />
               <div className="mt-10">
                 <TarifPanel preise={preise} align="start" />
               </div>
@@ -76,7 +79,7 @@ export default async function AngebotPage({ params }: { params: Promise<{ slug: 
             <Reveal delay={100}>
               <div className="rounded-2xl bg-surface-blue p-6 sm:p-8 lg:p-10">
                 <h2 className="heading-sub text-petrol">Kontakt aufnehmen</h2>
-                <p className="mt-3 text-[17px] font-light text-body">
+                <p className="mt-3 text-[17px] font-normal text-body">
                   Fragen zu diesem Angebot? Schreiben Sie mir – ich melde mich gerne bei Ihnen.
                 </p>
                 <div className="mt-6">

@@ -145,7 +145,7 @@ function VeranstaltungModal({ item, onClose }: { item: VeranstaltungItem; onClos
         </ul>
 
         {v.zielgruppe && (
-          <p className="mt-5 font-light">
+          <p className="mt-5 font-normal">
             <span className="font-semibold text-ink">Zielgruppe:</span> {v.zielgruppe}
           </p>
         )}
@@ -155,7 +155,7 @@ function VeranstaltungModal({ item, onClose }: { item: VeranstaltungItem; onClos
             <p className="font-semibold text-ink">Ziele</p>
             <ul className="mt-2 list-disc space-y-1 pl-5 text-body marker:text-petrol">
               {ziele.map((z, i) => (
-                <li key={z.id ?? i} className="font-light">
+                <li key={z.id ?? i} className="font-normal">
                   {z.text}
                 </li>
               ))}

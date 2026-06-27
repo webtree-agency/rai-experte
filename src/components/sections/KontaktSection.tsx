@@ -27,20 +27,20 @@ export function KontaktSection({ kontakt }: Props) {
 
           <Reveal delay={120} className="flex flex-col gap-8">
             <div>
-              <h3 className="text-lg font-light text-ink">Adresse</h3>
+              <h3 className="text-lg font-normal text-ink">Adresse</h3>
               <ul className="mt-2 space-y-1 text-muted">
                 <li>{strasse}</li>
                 <li>{plzOrt}</li>
               </ul>
             </div>
             <div>
-              <h3 className="text-lg font-light text-ink">E-Mail</h3>
+              <h3 className="text-lg font-normal text-ink">E-Mail</h3>
               <a href={`mailto:${email}`} className="mt-2 inline-block text-muted transition-colors hover:text-petrol">
                 {email}
               </a>
             </div>
             <div>
-              <h3 className="text-lg font-light text-ink">Telefon</h3>
+              <h3 className="text-lg font-normal text-ink">Telefon</h3>
               <a
                 href={`tel:${telefon.replace(/\s/g, '')}`}
                 className="mt-2 inline-block text-muted transition-colors hover:text-petrol"

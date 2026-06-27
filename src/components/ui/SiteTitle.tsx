@@ -11,7 +11,7 @@ export function SiteTitle({ title, className }: Props) {
   return (
     <span className={cn('inline-block leading-tight', className)}>
       <span className="font-bold">{first}</span>
-      {rest.length > 0 && <span className="font-light"> {rest.join(' ')}</span>}
+      {rest.length > 0 && <span className="font-normal"> {rest.join(' ')}</span>}
     </span>
   )
 }

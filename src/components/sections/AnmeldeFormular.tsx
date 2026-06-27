@@ -30,7 +30,7 @@ export function AnmeldeFormular({ veranstaltungId, ausgebucht }: Props) {
     return (
       <div className="rounded-lg border border-petrol/20 bg-surface-gray p-6">
         <h4 className="text-lg font-semibold text-petrol">Anmeldung erfolgreich!</h4>
-        <p className="mt-2 font-light">
+        <p className="mt-2 font-normal">
           Vielen Dank für Ihre Anmeldung. Sie erhalten in Kürze eine Bestätigung per E-Mail.
         </p>
       </div>

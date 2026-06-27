@@ -18,7 +18,7 @@ export function SubpageHero({ title, eyebrow, backHref, backLabel = 'Zurück' }:
       style={{
         backgroundImage: `url(${ASSETS.heroSmall})`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundPosition: 'left bottom',
       }}
     >
       {/* Leichter Overlay nur für Text-Lesbarkeit, hält das Verlaufs-Bild hell. */}

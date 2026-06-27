@@ -21,7 +21,7 @@ export default function NotFound() {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src="/assets_marco/images/ui/404.svg" alt="" className="relative mb-6 w-40 max-w-[60%]" />
       <h1 className="heading-hero relative !text-white">404</h1>
-      <p className="relative mt-4 text-xl font-light">Oops, Seite nicht gefunden!</p>
+      <p className="relative mt-4 text-xl font-normal">Oops, Seite nicht gefunden!</p>
       <Link href="/" className="btn btn-hero relative mt-8">
         Zurück zur Webseite!
       </Link>

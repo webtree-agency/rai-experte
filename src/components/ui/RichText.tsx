@@ -18,7 +18,7 @@ export function RichText({ data, className }: Props) {
       className={cn(
         'prose prose-neutral max-w-none',
         'prose-headings:font-semibold prose-headings:text-ink-soft',
-        'prose-p:font-light prose-p:text-body prose-li:text-body',
+        'prose-p:font-normal prose-p:text-body prose-li:text-body',
         'prose-a:text-petrol hover:prose-a:text-petrol-dark',
         'prose-strong:text-ink',
         className,
