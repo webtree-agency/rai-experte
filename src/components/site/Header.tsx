@@ -44,9 +44,10 @@ export function Header({ siteTitle, linkedin }: Props) {
             <Link
               key={item.href}
               href={item.href}
-              className="text-[15px] font-semibold uppercase text-white/90 transition-colors hover:text-white"
+              className="group relative text-[18px] font-medium uppercase text-white/90 transition-colors hover:text-white"
             >
               {item.label}
+              <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:scale-x-100" />
             </Link>
           ))}
           <a

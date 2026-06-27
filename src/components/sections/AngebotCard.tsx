@@ -25,7 +25,7 @@ export function AngebotCard({ angebot, className }: Props) {
     <Link
       href={`/${angebot.slug}`}
       className={cn(
-        'group relative flex h-[300px] flex-col items-center justify-between overflow-hidden rounded-2xl px-6 py-9 text-center text-white shadow-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl',
+        'group relative flex h-[300px] flex-col items-center justify-between overflow-hidden rounded-2xl px-6 pt-9 pb-5 text-center text-white shadow-md transition-shadow duration-300 hover:shadow-xl',
         OFFER_BG[angebot.kachelFarbe],
         className,
       )}

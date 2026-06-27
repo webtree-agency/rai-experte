@@ -31,7 +31,7 @@ export function UeberMichSection({ data }: Props) {
 
         <div className="mt-12 grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-16">
           <Reveal className="space-y-5">
-            <p className="font-bold text-ink">{name}</p>
+            <p className="!font-bold text-ink">{name}</p>
             {spalte1.map((text, i) => (
               <p key={i} className="text-[17px] leading-relaxed">
                 {text}

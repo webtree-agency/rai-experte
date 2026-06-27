@@ -22,7 +22,7 @@ export async function VeranstaltungenSection({ veranstaltungen }: Props) {
   )
 
   return (
-    <section className="section-pad bg-surface-blue">
+    <section className="section-pad !pt-0 bg-surface-blue">
       <div className="site-container">
         <Reveal>
           <h2 className="heading-section uppercase">Veranstaltungen</h2>

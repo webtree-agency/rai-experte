@@ -19,7 +19,7 @@ export function Hero({ title, subtitle }: Props) {
             <span className="brand-bold">{first}</span>
             {rest.length > 0 && <> {rest.join(' ')}</>}
           </h1>
-          <h3 className="mt-4 text-[24px] font-light text-white">{subtitle}</h3>
+          <h3 className="mt-4 text-[24px] font-medium text-white">{subtitle}</h3>
         </Reveal>
       </div>
       <div className="flex justify-center pb-[5vh]">

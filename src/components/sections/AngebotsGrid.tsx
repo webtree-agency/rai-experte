@@ -40,7 +40,8 @@ export function AngebotsGrid({ angebote }: { angebote: Angebote[] }) {
               onClick={() => onFilter(f.value)}
               className={cn(
                 'btn btn-green !h-11 !w-full sm:!w-auto sm:!min-w-[120px]',
-                active === f.value && 'border-petrol',
+                active === f.value &&
+                  '!border-petrol !bg-petrol font-medium !text-white',
               )}
             >
               {f.label}
