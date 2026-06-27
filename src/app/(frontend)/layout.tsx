@@ -6,7 +6,7 @@
  * Das Payload-Admin hat sein EIGENES Root-Layout unter (payload)/layout.tsx —
  * bewusst entkoppelt.
  */
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { montserrat } from '@/app/fonts'
 import { Header } from '@/components/site/Header'
 import { Footer } from '@/components/site/Footer'
@@ -22,6 +22,11 @@ import '@/app/globals.css'
 // CMS-getrieben → pro Request rendern (Header/Footer/Inhalte aus Payload).
 export const dynamic = 'force-dynamic'
 
+// Theme-Farbe (Browser-UI / Adressleiste auf Mobile) — Brand-Petrol.
+export const viewport: Viewport = {
+  themeColor: '#007f8b',
+}
+
 export async function generateMetadata(): Promise<Metadata> {
   const seo = await getSeoDefaults()
   const verification = seo?.googleSiteVerification ?? undefined
@@ -33,7 +38,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     description: seo?.defaultMetaDescription ?? undefined,
     applicationName: SITE_NAME,
-    icons: { icon: ASSETS.favicon },
+    icons: { icon: ASSETS.favicon, shortcut: ASSETS.favicon, apple: ASSETS.favicon },
     openGraph: {
       type: 'website',
       siteName: SITE_NAME,

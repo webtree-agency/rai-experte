@@ -5,6 +5,7 @@ import { getRechtstexte } from '@/lib/cms'
 export const metadata: Metadata = {
   title: { absolute: 'Impressum | Rai-experte.ch' },
   description: 'Impressum von BURGMEIJER RAI-Experte, Marco Burgmeijer, Hombrechtikon.',
+  alternates: { canonical: '/impressum' },
 }
 
 export default async function ImpressumSeite() {

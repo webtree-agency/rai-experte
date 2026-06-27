@@ -48,10 +48,12 @@ export const metadata: Metadata = {
     'Coaching Zürich',
     'Coaching Stäfa',
   ],
+  alternates: { canonical: '/' },
   openGraph: {
     title: 'Optimale Tarifstufen mit minimalem Dokumentationsaufwand | Rai-experte.ch',
     description:
       'Mit meinen speziellen Angeboten zeige ich Ihnen die einfache, krankenkassentaugliche Pflegedokumentation - von Tarifstufen bis interRAI LTCF-Wechsel.',
+    url: '/',
   },
 }
 

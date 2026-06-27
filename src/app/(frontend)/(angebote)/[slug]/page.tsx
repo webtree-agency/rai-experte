@@ -16,7 +16,7 @@ import { TarifPanel } from '@/components/sections/TarifPanel'
 import { KontaktFormular } from '@/components/sections/KontaktFormular'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { getAngebot, getAngebote, getPreise } from '@/lib/cms'
-import { serviceSchema } from '@/lib/jsonld'
+import { serviceSchema, breadcrumbSchema } from '@/lib/jsonld'
 
 export async function generateStaticParams() {
   const angebote = await getAngebote()
@@ -38,7 +38,8 @@ export async function generateMetadata({
   return {
     title: { absolute: title },
     description,
-    openGraph: { title, description, type: 'website' },
+    alternates: { canonical: `/${slug}` },
+    openGraph: { title, description, type: 'website', url: `/${slug}` },
   }
 }
 
@@ -51,7 +52,7 @@ export default async function AngebotPage({ params }: { params: Promise<{ slug: 
 
   return (
     <>
-      <JsonLd data={serviceSchema(angebot)} />
+      <JsonLd data={[serviceSchema(angebot), breadcrumbSchema(angebot)]} />
 
       <SubpageHero
         eyebrow={`Angebot ${angebot.nummer}`}

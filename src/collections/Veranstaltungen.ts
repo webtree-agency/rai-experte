@@ -17,6 +17,22 @@ export const Veranstaltungen: CollectionConfig = {
   },
   defaultSort: 'datumVon',
   access: { read: () => true },
+  hooks: {
+    /**
+     * Cascade: Beim Löschen einer Veranstaltung zuerst alle zugehörigen
+     * Anmeldungen entfernen. Sonst verletzt der Foreign-Key (anmeldungen.
+     * veranstaltung) den Constraint und die Transaktion bricht ab.
+     */
+    beforeDelete: [
+      async ({ req, id }) => {
+        await req.payload.delete({
+          collection: 'anmeldungen',
+          where: { veranstaltung: { equals: id } },
+          req,
+        })
+      },
+    ],
+  },
   fields: [
     { name: 'titel', type: 'text', required: true },
     slugField(),

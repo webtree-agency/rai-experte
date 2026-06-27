@@ -44,6 +44,24 @@ export function serviceSchema(angebot: Angebote): Json {
   }
 }
 
+/** Breadcrumb-Pfad für die Angebots-Detailseiten: Start › Angebote › Titel. */
+export function breadcrumbSchema(angebot: Angebote): Json {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Start', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Angebote', item: `${SITE_URL}/#angebot` },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: angebot.titel,
+        item: `${SITE_URL}/${angebot.slug}`,
+      },
+    ],
+  }
+}
+
 /**
  * AggregateRating + bis zu N Reviews aus den Referenzen mit Zitat.
  * Bewertung 5/5 (Testimonials sind durchwegs positiv).
