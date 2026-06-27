@@ -21,6 +21,13 @@ export const Veranstaltungen: CollectionConfig = {
     { name: 'titel', type: 'text', required: true },
     slugField(),
     {
+      name: 'beschreibung',
+      type: 'textarea',
+      admin: {
+        description: 'Kurze Einleitung / Beschreibung der Veranstaltung (erscheint oben im Detail).',
+      },
+    },
+    {
       name: 'datumVon',
       type: 'date',
       required: true,
@@ -40,6 +47,13 @@ export const Veranstaltungen: CollectionConfig = {
       },
     },
     { name: 'ort', type: 'text', required: true, admin: { description: 'z. B. „Stiftung Loogarten, Esslingen".' } },
+    {
+      name: 'ortMapsUrl',
+      type: 'text',
+      admin: {
+        description: 'Optionaler Google-Maps-Link zum Ort (Ort wird dann anklickbar).',
+      },
+    },
     { name: 'bild', type: 'upload', relationTo: 'media', admin: { description: 'Optionales Bild.' } },
     { name: 'zielgruppe', type: 'text', admin: { description: 'z. B. „Pflegehelferinnen und Pflegehelfer".' } },
     {

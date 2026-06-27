@@ -238,21 +238,21 @@ p {
     }
   }
 
-  /* ─── Section-Padding (100/0/140 → 60 → 30/0/60) ───────────────── */
+  /* ─── Section-Padding — konstant symmetrisch (80 → 56 → 48) ──────── */
   .section-pad {
-    padding: 100px 0 140px;
+    padding: 80px 0;
   }
   .section-pad-sub {
-    padding: 30px 0;
+    padding: 48px 0;
   }
   @media (max-width: 991px) {
     .section-pad {
-      padding: 60px 0;
+      padding: 56px 0;
     }
   }
   @media (max-width: 767px) {
     .section-pad {
-      padding: 30px 0 60px;
+      padding: 48px 0;
     }
   }
 

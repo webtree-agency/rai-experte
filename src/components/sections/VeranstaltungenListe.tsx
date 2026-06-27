@@ -38,6 +38,16 @@ export function VeranstaltungenListe({ items }: { items: VeranstaltungItem[] }) 
   )
 }
 
+/** Sektion-Label mit Petrol-Strich davor (wie im Footer/„— KONTAKT"-Stil). */
+function DashLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="flex items-center gap-3 text-sm font-semibold uppercase tracking-wider text-ink">
+      <span aria-hidden className="h-0.5 w-7 rounded bg-petrol" />
+      {children}
+    </p>
+  )
+}
+
 function StatusBadge({ ausgebucht, rest }: { ausgebucht: boolean; rest: number }) {
   if (ausgebucht) {
     return (
@@ -136,13 +146,28 @@ function VeranstaltungModal({ item, onClose }: { item: VeranstaltungItem; onClos
           </li>
           <li className="flex items-center gap-2">
             <MapPin size={18} className="shrink-0 text-petrol" />
-            {v.ort}
+            {v.ortMapsUrl ? (
+              <a
+                href={v.ortMapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline-offset-2 transition-colors hover:text-petrol hover:underline"
+              >
+                {v.ort}
+              </a>
+            ) : (
+              v.ort
+            )}
           </li>
           <li className="flex items-center gap-2">
             <Users size={18} className="shrink-0 text-petrol" />
             {ausgebucht ? 'Ausgebucht' : `Noch ${rest} ${rest === 1 ? 'Platz' : 'Plätze'} frei`}
           </li>
         </ul>
+
+        {v.beschreibung && (
+          <p className="mt-5 whitespace-pre-line text-body">{v.beschreibung}</p>
+        )}
 
         {v.zielgruppe && (
           <p className="mt-5 font-normal">
@@ -151,9 +176,9 @@ function VeranstaltungModal({ item, onClose }: { item: VeranstaltungItem; onClos
         )}
 
         {ziele.length > 0 && (
-          <div className="mt-5">
-            <p className="font-semibold text-ink">Ziele</p>
-            <ul className="mt-2 list-disc space-y-1 pl-5 text-body marker:text-petrol">
+          <div className="mt-6">
+            <DashLabel>Ziele</DashLabel>
+            <ul className="mt-3 list-disc space-y-1 pl-5 text-body marker:text-petrol">
               {ziele.map((z, i) => (
                 <li key={z.id ?? i} className="font-normal">
                   {z.text}
@@ -164,9 +189,9 @@ function VeranstaltungModal({ item, onClose }: { item: VeranstaltungItem; onClos
         )}
 
         {v.themen && (
-          <div className="mt-5">
-            <p className="font-semibold text-ink">Themen</p>
-            <RichText data={v.themen} className="mt-2 prose-sm" />
+          <div className="mt-6">
+            <DashLabel>Themen</DashLabel>
+            <RichText data={v.themen} className="mt-3 prose-sm" />
           </div>
         )}
 

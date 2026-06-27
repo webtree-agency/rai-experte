@@ -341,6 +341,10 @@ export interface Veranstaltungen {
    */
   slug: string;
   /**
+   * Kurze Einleitung / Beschreibung der Veranstaltung (erscheint oben im Detail).
+   */
+  beschreibung?: string | null;
+  /**
    * Start (Datum + Uhrzeit).
    */
   datumVon: string;
@@ -352,6 +356,10 @@ export interface Veranstaltungen {
    * z. B. „Stiftung Loogarten, Esslingen".
    */
   ort: string;
+  /**
+   * Optionaler Google-Maps-Link zum Ort (Ort wird dann anklickbar).
+   */
+  ortMapsUrl?: string | null;
   /**
    * Optionales Bild.
    */
@@ -660,9 +668,11 @@ export interface ReferenzenSelect<T extends boolean = true> {
 export interface VeranstaltungenSelect<T extends boolean = true> {
   titel?: T;
   slug?: T;
+  beschreibung?: T;
   datumVon?: T;
   datumBis?: T;
   ort?: T;
+  ortMapsUrl?: T;
   bild?: T;
   zielgruppe?: T;
   ziele?:

@@ -126,7 +126,7 @@ export const REFERENZEN: SeedReferenz[] = [
     websiteUrl: 'https://www.pflegezentren-toesstal.ch/',
     logo: `${R}/lindehus-im-spiegel.svg`,
     zitat:
-      "interRAI LTCF wurde kompetent, praxisnah, für alle verständlich und mit Humor erklärt.\nMit Marco's Hilfe und Unterstützung sind nun alle unsere Bewohner*innen korrekt im RAI-System eingestuft.",
+      'interRAI LTCF wurde kompetent, praxisnah, für alle verständlich und mit Humor erklärt.\nMit Marco’s Hilfe und Unterstützung sind nun alle unsere Bewohner*innen korrekt im RAI-System eingestuft.',
     autorName: 'Arlette Brunner-Benz',
     autorFunktion: 'Dipl. Pflegefachfrau FH',
     projektInfo: 'April - Mai 2025, Wechsel von BESA auf interRAI LTCF, Go-Life 01.06.2025',

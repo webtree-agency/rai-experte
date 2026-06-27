@@ -11,6 +11,7 @@ import { montserrat } from '@/app/fonts'
 import { Header } from '@/components/site/Header'
 import { Footer } from '@/components/site/Footer'
 import { ScrollToTop } from '@/components/site/ScrollToTop'
+import { LivePreviewListener } from '@/components/preview/LivePreviewListener'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { getAngebote, getKontakt, getSeoDefaults } from '@/lib/cms'
 import { localBusinessSchema } from '@/lib/jsonld'
@@ -66,6 +67,7 @@ export default async function FrontendLayout({ children }: { children: React.Rea
         <main>{children}</main>
         <Footer siteTitle={siteTitle} kontakt={kontakt} angebote={angebote} />
         <ScrollToTop />
+        <LivePreviewListener />
       </body>
     </html>
   )

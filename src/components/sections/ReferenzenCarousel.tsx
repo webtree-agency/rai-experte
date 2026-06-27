@@ -136,7 +136,7 @@ function ReferenzSlide({ r }: { r: Referenzen }) {
           {r.zitat && (
             <div className="relative mb-5 rounded-md bg-white px-7 pb-5 pt-8 shadow-[0_3px_10px_rgba(0,0,0,0.05)]">
               <Quote className="absolute left-4 top-3 text-petrol-alt opacity-40" size={20} />
-              <p className="italic leading-relaxed text-quote">{r.zitat}</p>
+              <p className="whitespace-pre-line italic leading-relaxed text-quote">{r.zitat}</p>
               {/* 45°-Pfeil unten */}
               <span className="absolute -bottom-2 left-8 h-4 w-4 rotate-45 bg-white shadow-[3px_3px_5px_rgba(0,0,0,0.05)]" />
             </div>

@@ -60,7 +60,7 @@ export default async function AngebotPage({ params }: { params: Promise<{ slug: 
       />
 
       {/* Links: Beschreibung + Tarife · Rechts: Kontaktformular */}
-      <section className="section-pad-sub py-16 md:py-24">
+      <section className="section-pad">
         <div className="site-container">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
             {/* Links */}
@@ -92,7 +92,7 @@ export default async function AngebotPage({ params }: { params: Promise<{ slug: 
       </section>
 
       {/* Cross-Links zu den anderen Angeboten */}
-      <section className="section-pad-sub bg-surface-blue py-16">
+      <section className="section-pad bg-surface-blue">
         <div className="site-container">
           <Reveal>
             <h2 className="heading-section mb-10 uppercase">Weitere Angebote</h2>

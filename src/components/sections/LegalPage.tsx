@@ -12,7 +12,7 @@ export function LegalPage({ title, data }: Props) {
   return (
     <>
       <SubpageHero title={title} />
-      <section className="section-pad-sub py-16 md:py-20">
+      <section className="section-pad">
         <div className="site-container max-w-3xl">
           <Reveal>{data ? <RichText data={data} /> : <p className="text-body">Inhalt folgt.</p>}</Reveal>
         </div>

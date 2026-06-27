@@ -53,6 +53,31 @@ export default buildConfig({
       title: 'RAI-Experte · Admin',
       titleSuffix: '',
     },
+    /**
+     * Live Preview — der Redaktor sieht die laufende Seite live im Admin-Iframe
+     * (mit Mobile/Tablet/Desktop-Umschalter). Bewusst OHNE Drafts: jede Änderung
+     * speichert direkt produktiv, RefreshRouteOnSave triggert `router.refresh()`
+     * im Frontend (siehe src/components/preview/LivePreviewListener.tsx).
+     *
+     * Die url-Funktion mappt jede Collection/Global auf die Seite, wo ihr Inhalt
+     * erscheint: Angebote → /<slug>, Rechtstexte → /impressum, alles andere
+     * (Referenzen, Veranstaltungen, Preise, Über-mich, Kontakt, SEO) → Startseite.
+     */
+    livePreview: {
+      url: ({ data, collectionConfig, globalConfig }) => {
+        const base = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
+        if (collectionConfig?.slug === 'angebote' && data?.slug) return `${base}/${data.slug}`
+        if (globalConfig?.slug === 'rechtstexte') return `${base}/impressum`
+        return base
+      },
+      collections: ['referenzen', 'angebote', 'veranstaltungen'],
+      globals: ['preise', 'rechtstexte', 'kontakt', 'uebermich', 'seoDefaults'],
+      breakpoints: [
+        { label: 'Mobile', name: 'mobile', width: 390, height: 844 },
+        { label: 'Tablet', name: 'tablet', width: 768, height: 1024 },
+        { label: 'Desktop', name: 'desktop', width: 1440, height: 900 },
+      ],
+    },
   },
   editor: lexicalEditor(),
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
