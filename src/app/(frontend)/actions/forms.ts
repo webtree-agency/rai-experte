@@ -12,8 +12,9 @@
  * Übersetzung/Anzeige macht das Frontend.
  */
 import { getPayloadClient } from '@/lib/payload'
+import { getRestplaetze } from '@/lib/cms'
 import { sendKontaktMails, sendAnmeldungMails } from '@/lib/email'
-import type { FormState } from './form-state'
+import { MAX_TICKETS, type FormState } from './form-state'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 // Name: Buchstaben (inkl. Umlaute) + Leerzeichen + Bindestrich, mind. 2 Zeichen.
@@ -121,6 +122,43 @@ export async function submitAnmeldung(_prev: FormState, formData: FormData): Pro
 
   try {
     const payload = await getPayloadClient()
+
+    // Veranstaltung laden + Kapazität prüfen, BEVOR angelegt wird.
+    const v = await payload.findByID({
+      collection: 'veranstaltungen',
+      id: veranstaltungId,
+      depth: 0,
+    })
+    if (!v || v.status === 'abgesagt') {
+      return {
+        status: 'error',
+        reason: 'validation',
+        fields: { anzahlPersonen: 'Diese Veranstaltung ist nicht mehr verfügbar.' },
+        values,
+      }
+    }
+
+    const plaetze = typeof v.plaetze === 'number' ? v.plaetze : 0
+    const rest = await getRestplaetze(veranstaltungId, plaetze)
+
+    if (rest <= 0 || v.status === 'ausgebucht') {
+      return {
+        status: 'error',
+        reason: 'validation',
+        fields: { anzahlPersonen: 'Diese Veranstaltung ist leider ausgebucht.' },
+        values,
+      }
+    }
+
+    const maxBuchbar = Math.min(MAX_TICKETS, rest)
+    if (anzahlPersonen > maxBuchbar) {
+      const msg =
+        rest < MAX_TICKETS
+          ? `Es sind nur noch ${rest} ${rest === 1 ? 'Platz' : 'Plätze'} verfügbar.`
+          : `Maximal ${MAX_TICKETS} Tickets pro Anmeldung.`
+      return { status: 'error', reason: 'validation', fields: { anzahlPersonen: msg }, values }
+    }
+
     const created = await payload.create({
       collection: 'anmeldungen',
       data: {
@@ -140,30 +178,18 @@ export async function submitAnmeldung(_prev: FormState, formData: FormData): Pro
     // Anmelde-Code aus der Payload-ID — eindeutig, zum Vorzeigen vor Ort.
     const referenz = `RAI-${String(created.id).padStart(5, '0')}`
 
-    let titel = 'Veranstaltung'
-    let datum: string | undefined
-    let ort: string | undefined
+    const titel = typeof v.titel === 'string' ? v.titel : 'Veranstaltung'
+    const datum = formatDatum(v.datumVon)
+    const ort = typeof v.ort === 'string' ? v.ort : undefined
+    // Anzeige wie im Frontend: 0 = „Kostenlos", sonst „CHF X"; preisInfo ergänzt.
     let preis: string | undefined
-    try {
-      const v = await payload.findByID({
-        collection: 'veranstaltungen',
-        id: veranstaltungId,
-        depth: 0,
-      })
-      titel = typeof v?.titel === 'string' ? v.titel : titel
-      datum = formatDatum(v?.datumVon)
-      ort = typeof v?.ort === 'string' ? v.ort : undefined
-      // Anzeige wie im Frontend: 0 = „Kostenlos", sonst „CHF X"; preisInfo ergänzt.
-      if (typeof v?.preis === 'number') {
-        preis = v.preis === 0 ? 'Kostenlos' : `CHF ${v.preis}`
-        if (typeof v?.preisInfo === 'string' && v.preisInfo.trim()) {
-          preis += ` (${v.preisInfo.trim()})`
-        }
-      } else if (typeof v?.preisInfo === 'string' && v.preisInfo.trim()) {
-        preis = v.preisInfo.trim()
+    if (typeof v.preis === 'number') {
+      preis = v.preis === 0 ? 'Kostenlos' : `CHF ${v.preis}`
+      if (typeof v.preisInfo === 'string' && v.preisInfo.trim()) {
+        preis += ` (${v.preisInfo.trim()})`
       }
-    } catch {
-      /* Detail-Auflösung optional. */
+    } else if (typeof v.preisInfo === 'string' && v.preisInfo.trim()) {
+      preis = v.preisInfo.trim()
     }
 
     await sendAnmeldungMails({

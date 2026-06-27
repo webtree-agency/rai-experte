@@ -12,6 +12,7 @@ import { AnmeldeFormular } from './AnmeldeFormular'
 import { RichText } from '@/components/ui/RichText'
 import { Reveal } from '@/components/ui/Reveal'
 import { formatDatumBereich } from '@/lib/format'
+import { MAX_TICKETS } from '@/app/(frontend)/actions/form-state'
 import type { Veranstaltungen } from '@/payload-types'
 
 export type VeranstaltungItem = {
@@ -217,7 +218,11 @@ function VeranstaltungModal({ item, onClose }: { item: VeranstaltungItem; onClos
               {ausgebucht ? 'Ausgebucht' : `Noch ${rest} ${rest === 1 ? 'Platz' : 'Plätze'} frei`}
             </span>
           </div>
-          <AnmeldeFormular veranstaltungId={v.id} ausgebucht={ausgebucht} />
+          <AnmeldeFormular
+            veranstaltungId={v.id}
+            ausgebucht={ausgebucht}
+            maxTickets={Math.min(MAX_TICKETS, Math.max(1, rest))}
+          />
         </div>
         </div>
       </div>

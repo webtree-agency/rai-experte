@@ -11,9 +11,9 @@ import { INITIAL_STATE, type FormState } from '@/app/(frontend)/actions/form-sta
 import { FormField, Honeypot } from '@/components/ui/FormField'
 import { cn } from '@/lib/utils'
 
-type Props = { veranstaltungId: number; ausgebucht: boolean }
+type Props = { veranstaltungId: number; ausgebucht: boolean; maxTickets: number }
 
-export function AnmeldeFormular({ veranstaltungId, ausgebucht }: Props) {
+export function AnmeldeFormular({ veranstaltungId, ausgebucht, maxTickets }: Props) {
   const [open, setOpen] = useState(false)
   const [state, action, pending] = useActionState<FormState, FormData>(
     submitAnmeldung,
@@ -65,7 +65,7 @@ export function AnmeldeFormular({ veranstaltungId, ausgebucht }: Props) {
       </div>
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <FormField name="firma" label="Firma (optional)" autoComplete="organization" defaultValue={values.firma} error={errors.firma} />
-        <FormField name="anzahlPersonen" label="Anzahl Personen" type="number" min={1} defaultValue={values.anzahlPersonen ?? '1'} error={errors.anzahlPersonen} />
+        <FormField name="anzahlPersonen" label="Anzahl Personen" type="number" min={1} max={maxTickets} defaultValue={values.anzahlPersonen ?? '1'} error={errors.anzahlPersonen} />
       </div>
       <FormField name="bemerkung" label="Bemerkung (optional)" multiline defaultValue={values.bemerkung} error={errors.bemerkung} />
 

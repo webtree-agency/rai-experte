@@ -14,8 +14,10 @@ type Props = {
   pattern?: string
   title?: string
   min?: number
+  max?: number
   defaultValue?: string
   autoComplete?: string
+  /** `required` | `invalid` werden lokalisiert; jeder andere String wird direkt angezeigt. */
   error?: string
 }
 
@@ -28,11 +30,17 @@ export function FormField({
   pattern,
   title,
   min,
+  max,
   defaultValue,
   autoComplete,
   error,
 }: Props) {
-  const msg = error === 'invalid' ? 'Bitte gültigen Wert eingeben.' : error ? 'Pflichtfeld.' : null
+  const msg =
+    error === 'invalid'
+      ? 'Bitte gültigen Wert eingeben.'
+      : error === 'required'
+        ? 'Pflichtfeld.'
+        : (error ?? null)
   const base = cn(
     'w-full rounded-md border bg-white px-4 py-3 text-base text-ink transition-colors',
     'placeholder:text-ink/35 focus:outline-none focus:border-form-focus focus:bg-surface-gray',
@@ -60,6 +68,7 @@ export function FormField({
           name={name}
           type={type}
           min={min}
+          max={max}
           required={required}
           pattern={pattern}
           title={title}

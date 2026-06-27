@@ -18,3 +18,6 @@ export type FormState =
     }
 
 export const INITIAL_STATE: FormState = { status: 'idle' }
+
+/** Hard-Cap: max. Tickets pro einzelner Anmeldung (zusätzlich zur Restplatz-Prüfung). */
+export const MAX_TICKETS = 5

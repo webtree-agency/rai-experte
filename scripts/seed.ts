@@ -10,6 +10,7 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import { makeMediaUpsert, rich } from './seed/lib'
 import { REFERENZEN } from './seed/referenzen-data'
+import { VERANSTALTUNGEN } from './seed/veranstaltungen-data'
 import { IMPRESSUM_LINES, AGB_LINES, DATENSCHUTZ_LINES } from './seed/legal-data'
 
 async function main() {
@@ -215,41 +216,29 @@ async function main() {
   })
   log('Kontakt & SEO-Defaults geseedet.')
 
-  /* ─── Veranstaltung (Beispiel) ───────────────────────────────────── */
+  /* ─── Veranstaltungen (4) ────────────────────────────────────────── */
   await payload.delete({ collection: 'veranstaltungen', where: { id: { exists: true } } })
-  await payload.create({
-    collection: 'veranstaltungen',
-    data: {
-      titel: 'interRAI LTCF Pflegehelferin oder Pflegehelfer',
-      slug: 'interrai-ltcf-pflegehelfer-2026-08-27',
-      datumVon: '2026-08-27T13:00:00+02:00',
-      datumBis: '2026-08-27T16:00:00+02:00',
-      ort: 'Stiftung Loogarten, Esslingen',
-      zielgruppe: 'Pflegehelferinnen und Pflegehelfer',
-      ziele: [
-        { text: 'Die Schulung vermittelt den Teilnehmenden eine einfache und korrekte Dokumentation in der interRAI-LTCF-Sprache.' },
-        { text: 'Die Teilnehmenden kennen die Wichtigkeit des ADL-Index, die einzelnen Level sowie deren korrekte Dokumentation.' },
-        { text: 'Die Teilnehmenden kennen die wirtschaftliche Bedeutung von interRAI LTCF.' },
-      ],
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      themen: rich([
-        'Die Weiterbildung umfasst folgende Themenbereiche:',
-        '### interRAI LTCF Basics',
-        '- interRAI LTCF: Philosophie und Hauptfunktionen',
-        '- ADL-Index und Level',
-        '### interRAI LTCF – Leitlinien der Dokumentation',
-        '- Empfehlungen BESA Qsys',
-        '- Mit Schwerpunkt auf eine einfache und aussagekräftige Dokumentation der relevanten Items des ADL-Index',
-        '### Wirtschaftliche Auswirkungen von RAI-Beurteilungen auf die Pflegequalität',
-        '### Praktische Beispiele und Übungen',
-      ]) as any,
-      preis: 95,
-      preisInfo: 'Halbtages-Schulung CHF 95, Zahlung auf Rechnung',
-      plaetze: 7,
-      status: 'offen',
-    },
-  })
-  log('Beispiel-Veranstaltung geseedet.')
+  for (const v of VERANSTALTUNGEN) {
+    await payload.create({
+      collection: 'veranstaltungen',
+      data: {
+        titel: v.titel,
+        slug: v.slug,
+        datumVon: v.datumVon,
+        datumBis: v.datumBis,
+        ort: v.ort,
+        zielgruppe: v.zielgruppe,
+        ziele: v.ziele.map((text) => ({ text })),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        themen: rich(v.themen) as any,
+        preis: v.preis,
+        preisInfo: v.preisInfo,
+        plaetze: v.plaetze,
+        status: 'offen',
+      },
+    })
+  }
+  log(`Veranstaltungen (${VERANSTALTUNGEN.length}) geseedet.`)
 
   log('Seed abgeschlossen. ✅')
   process.exit(0)
