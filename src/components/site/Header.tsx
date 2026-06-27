@@ -7,7 +7,7 @@
  */
 import { useState } from 'react'
 import Link from 'next/link'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Mail, Phone, Linkedin } from 'lucide-react'
 import { SiteTitle } from '@/components/ui/SiteTitle'
 import { ASSETS } from '@/lib/assets'
 import { cn } from '@/lib/utils'
@@ -21,9 +21,9 @@ const NAV: NavItem[] = [
   { label: 'Kontakt', href: '/#kontakt' },
 ]
 
-type Props = { siteTitle: string; linkedin: string }
+type Props = { siteTitle: string; linkedin: string; email: string; telefon: string }
 
-export function Header({ siteTitle, linkedin }: Props) {
+export function Header({ siteTitle, linkedin, email, telefon }: Props) {
   const [open, setOpen] = useState(false)
   const close = () => setOpen(false)
 
@@ -77,35 +77,61 @@ export function Header({ siteTitle, linkedin }: Props) {
       {/* Mobile-Overlay */}
       <div
         className={cn(
-          'fixed inset-0 z-40 flex flex-col items-start justify-center gap-2 bg-white px-[10%] transition-opacity duration-300 lg:hidden',
+          'fixed inset-0 z-40 flex flex-col justify-center gap-8 bg-white px-[10%] transition-opacity duration-300 lg:hidden',
           open
             ? 'mobile-nav-open pointer-events-auto opacity-100'
             : 'pointer-events-none opacity-0',
         )}
       >
-        {NAV.map((item, i) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            onClick={close}
-            style={{ '--i': i } as React.CSSProperties}
-            className="mobile-nav-link block py-3 text-3xl font-semibold uppercase text-ink"
-          >
-            {item.label}
-          </Link>
-        ))}
-        <a
-          href={linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={close}
+        {/* Navigation */}
+        <nav className="flex flex-col items-start">
+          {NAV.map((item, i) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={close}
+              style={{ '--i': i } as React.CSSProperties}
+              className="mobile-nav-link group relative block py-2.5 text-3xl font-semibold uppercase text-ink"
+            >
+              <span className="absolute -left-[10%] top-1/2 h-[2px] w-7 -translate-y-1/2 scale-x-0 rounded-full bg-petrol transition-transform duration-300 ease-out group-hover:scale-x-100" />
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+
+        {/* Kontakt */}
+        <div
           style={{ '--i': NAV.length } as React.CSSProperties}
-          className="mobile-nav-link mt-2 flex items-center gap-2 py-3 text-3xl font-semibold uppercase text-ink"
+          className="mobile-nav-link flex flex-col gap-4 border-t border-ink/10 pt-8"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={ASSETS.linkedinIcon} alt="" className="h-7 w-7" />
-          LinkedIn
-        </a>
+          <span className="footer-heading">Kontakt</span>
+          <a
+            href={`tel:${telefon.replace(/\s/g, '')}`}
+            onClick={close}
+            className="flex items-center gap-3 text-lg font-normal text-body transition-colors hover:text-petrol"
+          >
+            <Phone size={18} className="shrink-0 text-petrol" />
+            {telefon}
+          </a>
+          <a
+            href={`mailto:${email}`}
+            onClick={close}
+            className="flex items-center gap-3 text-lg font-normal text-body transition-colors hover:text-petrol"
+          >
+            <Mail size={18} className="shrink-0 text-petrol" />
+            {email}
+          </a>
+          <a
+            href={linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={close}
+            className="flex items-center gap-3 text-lg font-normal text-body transition-colors hover:text-petrol"
+          >
+            <Linkedin size={18} className="shrink-0 text-petrol" />
+            LinkedIn
+          </a>
+        </div>
       </div>
     </header>
   )

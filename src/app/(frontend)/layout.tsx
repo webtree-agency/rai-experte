@@ -57,7 +57,12 @@ export default async function FrontendLayout({ children }: { children: React.Rea
     <html lang="de-CH" className={montserrat.variable}>
       <body className="bg-white text-ink antialiased">
         <JsonLd data={localBusinessSchema(kontakt)} />
-        <Header siteTitle={siteTitle} linkedin={linkedin} />
+        <Header
+          siteTitle={siteTitle}
+          linkedin={linkedin}
+          email={kontakt?.email ?? 'rai-experte@gmx.ch'}
+          telefon={kontakt?.telefon ?? '+41 76 457 44 82'}
+        />
         <main>{children}</main>
         <Footer siteTitle={siteTitle} kontakt={kontakt} angebote={angebote} />
         <ScrollToTop />
