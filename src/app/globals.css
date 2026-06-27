@@ -151,8 +151,8 @@ p {
   }
   .btn-green:hover,
   .btn-green:focus-visible {
-    background-color: transparent;
-    color: var(--color-ink);
+    background-color: var(--color-petrol);
+    color: #ffffff;
     border-color: var(--color-petrol);
   }
 
@@ -254,6 +254,33 @@ p {
     .section-pad {
       padding: 30px 0 60px;
     }
+  }
+
+  /* ─── Footer ────────────────────────────────────────────────────── */
+  .footer-heading {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-ink);
+  }
+  .footer-heading::before {
+    content: '';
+    width: 18px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--color-petrol);
+  }
+  .footer-link {
+    font-weight: 300;
+    color: var(--color-body);
+    transition: color 0.2s ease-in-out;
+  }
+  .footer-link:hover {
+    color: var(--color-petrol);
   }
 }
 

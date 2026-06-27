@@ -35,10 +35,10 @@ export function AngebotCard({ angebot, className }: Props) {
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/10 via-black/5 to-black/25"
       />
-      <span className="relative text-xs font-semibold uppercase text-white/85">
+      <span className="relative text-xs font-medium uppercase text-white/85">
         Angebot {angebot.nummer}
       </span>
-      <span className="relative flex flex-1 items-center whitespace-pre-line text-xl font-semibold leading-snug md:text-2xl">
+      <span className="relative flex flex-1 items-center whitespace-pre-line text-xl font-medium leading-snug md:text-2xl">
         {angebot.kurztext}
       </span>
       <span className="relative transition-transform duration-300 group-hover:translate-y-1">
