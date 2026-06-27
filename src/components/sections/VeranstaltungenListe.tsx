@@ -7,7 +7,7 @@
  * vorberechnet rein – diese Komponente ist nur für die Interaktion zuständig.
  */
 import { useEffect, useState } from 'react'
-import { CalendarDays, MapPin, Users, X, ArrowRight } from 'lucide-react'
+import { CalendarDays, MapPin, Users, X, ArrowRight, Tag } from 'lucide-react'
 import { AnmeldeFormular } from './AnmeldeFormular'
 import { RichText } from '@/components/ui/RichText'
 import { Reveal } from '@/components/ui/Reveal'
@@ -41,8 +41,8 @@ export function VeranstaltungenListe({ items }: { items: VeranstaltungItem[] }) 
 /** Sektion-Label mit Petrol-Strich davor (wie im Footer/„— KONTAKT"-Stil). */
 function DashLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="flex items-center gap-3 text-sm font-semibold uppercase tracking-wider text-ink">
-      <span aria-hidden className="h-0.5 w-7 rounded bg-petrol" />
+    <p className="flex items-center gap-3 text-sm !font-semibold uppercase tracking-wider text-ink">
+      <span aria-hidden className="h-0.5 w-5 rounded bg-petrol" />
       {children}
     </p>
   )
@@ -139,13 +139,13 @@ function VeranstaltungModal({ item, onClose }: { item: VeranstaltungItem; onClos
         <div className="overflow-y-auto overscroll-contain p-6 sm:p-9">
         <h3 className="heading-sub max-w-[90%] text-ink">{v.titel}</h3>
 
-        <ul className="mt-4 flex flex-col gap-2 text-body sm:flex-row sm:flex-wrap sm:gap-x-8">
-          <li className="flex items-center gap-2">
-            <CalendarDays size={18} className="shrink-0 text-petrol" />
+        <div className="mt-5 flex flex-wrap items-center gap-2.5">
+          <span className="inline-flex items-center gap-2 rounded-full bg-surface-blue px-4 py-2 text-sm text-ink">
+            <CalendarDays size={16} className="shrink-0 text-petrol" />
             {formatDatumBereich(v.datumVon, v.datumBis)}
-          </li>
-          <li className="flex items-center gap-2">
-            <MapPin size={18} className="shrink-0 text-petrol" />
+          </span>
+          <span className="inline-flex items-center gap-2 rounded-full bg-surface-blue px-4 py-2 text-sm text-ink">
+            <MapPin size={16} className="shrink-0 text-petrol" />
             {v.ortMapsUrl ? (
               <a
                 href={v.ortMapsUrl}
@@ -158,12 +158,18 @@ function VeranstaltungModal({ item, onClose }: { item: VeranstaltungItem; onClos
             ) : (
               v.ort
             )}
-          </li>
-          <li className="flex items-center gap-2">
-            <Users size={18} className="shrink-0 text-petrol" />
+          </span>
+          {(v.preis != null || v.preisInfo) && (
+            <span className="inline-flex items-center gap-2 rounded-full bg-surface-blue px-4 py-2 text-sm text-ink">
+              <Tag size={16} className="shrink-0 text-petrol" />
+              {v.preis != null ? (v.preis === 0 ? 'Kostenlos' : `CHF ${v.preis}`) : v.preisInfo}
+            </span>
+          )}
+          <span className="inline-flex items-center gap-2 rounded-full bg-surface-blue px-4 py-2 text-sm text-ink">
+            <Users size={16} className="shrink-0 text-petrol" />
             {ausgebucht ? 'Ausgebucht' : `Noch ${rest} ${rest === 1 ? 'Platz' : 'Plätze'} frei`}
-          </li>
-        </ul>
+          </span>
+        </div>
 
         {v.beschreibung && (
           <p className="mt-5 whitespace-pre-line text-body">{v.beschreibung}</p>
@@ -196,12 +202,21 @@ function VeranstaltungModal({ item, onClose }: { item: VeranstaltungItem; onClos
         )}
 
         {(v.preisInfo || v.preis != null) && (
-          <p className="mt-5 font-semibold text-ink">
-            {v.preisInfo ?? (v.preis === 0 ? 'Kostenlos' : `CHF ${v.preis}`)}
-          </p>
+          <div className="mt-6">
+            <DashLabel>Preis</DashLabel>
+            <p className="mt-3 font-semibold text-ink">
+              {v.preisInfo ?? (v.preis === 0 ? 'Kostenlos' : `CHF ${v.preis}`)}
+            </p>
+          </div>
         )}
 
         <div className="mt-6 border-t border-border-light pt-6">
+          <div className="mb-4">
+            <span className="inline-flex items-center gap-2 rounded-full bg-surface-blue px-4 py-2 text-sm text-ink">
+              <Users size={16} className="shrink-0 text-petrol" />
+              {ausgebucht ? 'Ausgebucht' : `Noch ${rest} ${rest === 1 ? 'Platz' : 'Plätze'} frei`}
+            </span>
+          </div>
           <AnmeldeFormular veranstaltungId={v.id} ausgebucht={ausgebucht} />
         </div>
         </div>

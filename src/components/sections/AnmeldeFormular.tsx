@@ -20,7 +20,7 @@ export function AnmeldeFormular({ veranstaltungId, ausgebucht }: Props) {
 
   if (ausgebucht) {
     return (
-      <button type="button" disabled className="btn btn-border cursor-not-allowed opacity-60">
+      <button type="button" disabled className="btn btn-border !w-full cursor-not-allowed opacity-60">
         Ausgebucht
       </button>
     )
@@ -39,7 +39,7 @@ export function AnmeldeFormular({ veranstaltungId, ausgebucht }: Props) {
 
   if (!open) {
     return (
-      <button type="button" onClick={() => setOpen(true)} className="btn btn-green">
+      <button type="button" onClick={() => setOpen(true)} className="btn btn-fill !w-full">
         Anmelden
       </button>
     )
@@ -72,11 +72,15 @@ export function AnmeldeFormular({ veranstaltungId, ausgebucht }: Props) {
         </p>
       )}
 
-      <div className="flex flex-col items-start gap-3">
-        <button type="submit" disabled={pending} className="btn btn-green disabled:opacity-60">
+      <div className="flex flex-col items-center gap-3">
+        <button type="submit" disabled={pending} className="btn btn-fill !w-full disabled:opacity-60">
           {pending ? 'Senden …' : 'Anmeldung absenden'}
         </button>
-        <button type="button" onClick={() => setOpen(false)} className="btn btn-border">
+        <button
+          type="button"
+          onClick={() => setOpen(false)}
+          className="text-sm font-medium text-muted underline-offset-2 transition-colors hover:text-petrol hover:underline"
+        >
           Abbrechen
         </button>
       </div>

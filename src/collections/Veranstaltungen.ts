@@ -102,5 +102,21 @@ export const Veranstaltungen: CollectionConfig = {
         { label: 'Vergangen', value: 'vergangen' },
       ],
     },
+    /**
+     * Angemeldete Personen direkt in der Veranstaltung — Join auf die
+     * Anmeldungen-Collection (Feld „veranstaltung"). So sieht der Kunde mit
+     * einem Klick, wer sich für genau diese Veranstaltung angemeldet hat.
+     */
+    {
+      name: 'anmeldungen',
+      type: 'join',
+      collection: 'anmeldungen',
+      on: 'veranstaltung',
+      label: 'Angemeldete Personen',
+      admin: {
+        defaultColumns: ['nachname', 'vorname', 'email', 'telefon', 'anzahlPersonen', 'status'],
+        description: 'Wer sich für diese Veranstaltung angemeldet hat.',
+      },
+    },
   ],
 }

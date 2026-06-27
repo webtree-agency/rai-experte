@@ -79,7 +79,11 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {};
+  collectionsJoins: {
+    veranstaltungen: {
+      anmeldungen: 'anmeldungen';
+    };
+  };
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
@@ -412,6 +416,14 @@ export interface Veranstaltungen {
    */
   anmeldeschluss?: string | null;
   status: 'offen' | 'ausgebucht' | 'abgesagt' | 'vergangen';
+  /**
+   * Wer sich für diese Veranstaltung angemeldet hat.
+   */
+  anmeldungen?: {
+    docs?: (number | Anmeldungen)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -687,6 +699,7 @@ export interface VeranstaltungenSelect<T extends boolean = true> {
   plaetze?: T;
   anmeldeschluss?: T;
   status?: T;
+  anmeldungen?: T;
   updatedAt?: T;
   createdAt?: T;
 }

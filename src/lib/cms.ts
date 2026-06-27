@@ -102,7 +102,12 @@ export function getReferenzen(): Promise<Referenzen[]> {
   }, [])
 }
 
-/** Offene, nicht-vergangene Veranstaltungen (Startseite). */
+/**
+ * Nicht-vergangene Veranstaltungen (Startseite). Vergangen = manuell auf Status
+ * „vergangen" gesetzt ODER das Enddatum (datumBis, sonst Tagesende von datumVon)
+ * liegt in der Vergangenheit — so verschwinden Events nach ihrem Tag automatisch,
+ * ohne dass jemand den Status pflegen muss.
+ */
 export function getVeranstaltungen(): Promise<Veranstaltungen[]> {
   return safe(async () => {
     const payload = await getPayloadClient()
@@ -113,7 +118,14 @@ export function getVeranstaltungen(): Promise<Veranstaltungen[]> {
       limit: 50,
       depth: 1,
     })
-    return res.docs
+    const now = Date.now()
+    return res.docs.filter((v) => {
+      // Ohne Endzeit bis Tagesende des Startdatums sichtbar lassen.
+      const ende = v.datumBis
+        ? new Date(v.datumBis)
+        : new Date(new Date(v.datumVon).setHours(23, 59, 59, 999))
+      return ende.getTime() >= now
+    })
   }, [])
 }
 
