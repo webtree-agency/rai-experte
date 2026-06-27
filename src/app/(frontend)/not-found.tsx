@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ASSETS } from '@/lib/assets'
 
 export const metadata: Metadata = {
   title: { absolute: '404 Seite nicht gefunden | Rai-experte.ch' },
@@ -9,21 +8,25 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
+    // data-light-header → schaltet den globalen Header per CSS auf dunkle
+    // Schrift (heller Hintergrund, sonst unlesbar). Siehe globals.css.
     <section
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-24 text-center text-white"
-      style={{
-        backgroundImage: `url(${ASSETS.heroSmall})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
+      data-light-header
+      className="flex min-h-[80vh] flex-col items-center justify-center bg-surface-blue px-6 pt-32 pb-24 text-center"
     >
-      <span aria-hidden className="pointer-events-none absolute inset-0 bg-black/20" />
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/assets_marco/images/ui/404.svg" alt="" className="relative mb-6 w-40 max-w-[60%]" />
-      <h1 className="heading-hero relative !text-white">404</h1>
-      <p className="relative mt-4 text-xl font-normal">Oops, Seite nicht gefunden!</p>
-      <Link href="/" className="btn btn-hero relative mt-8">
-        Zurück zur Webseite!
+      <span className="footer-heading">Fehler 404</span>
+
+      <p className="mt-6 text-[120px] font-bold leading-none text-petrol sm:text-[160px]">404</p>
+
+      <h1 className="heading-sub mt-2 !text-ink">Seite nicht gefunden</h1>
+
+      <p className="mt-4 max-w-md text-[17px] font-normal leading-relaxed text-body">
+        Die gewünschte Seite existiert nicht oder wurde verschoben. Kehren Sie zurück zur
+        Startseite, um weiterzustöbern.
+      </p>
+
+      <Link href="/" className="btn btn-fill mt-10">
+        Zurück zur Startseite
       </Link>
     </section>
   )

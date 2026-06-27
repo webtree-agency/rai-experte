@@ -13,13 +13,7 @@
  */
 import { getPayloadClient } from '@/lib/payload'
 import { sendKontaktMails, sendAnmeldungMails } from '@/lib/email'
-
-export type FormState =
-  | { status: 'idle' }
-  | { status: 'success' }
-  | { status: 'error'; reason: 'validation' | 'server'; fields?: Record<string, string> }
-
-export const INITIAL_STATE: FormState = { status: 'idle' }
+import type { FormState } from './form-state'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 // Name: Buchstaben (inkl. Umlaute) + Leerzeichen + Bindestrich, mind. 2 Zeichen.
@@ -43,6 +37,9 @@ export async function submitKontakt(_prev: FormState, formData: FormData): Promi
   const email = str(formData.get('email'))
   const telefon = str(formData.get('telefon'))
   const nachricht = str(formData.get('nachricht'))
+  const herkunft = str(formData.get('herkunft'))
+
+  const values = { name, email, telefon, nachricht }
 
   const fields: Record<string, string> = {}
   if (!name) fields.name = 'required'
@@ -51,21 +48,27 @@ export async function submitKontakt(_prev: FormState, formData: FormData): Promi
   else if (!EMAIL_RE.test(email)) fields.email = 'invalid'
   if (!telefon) fields.telefon = 'required'
   if (!nachricht) fields.nachricht = 'required'
-  if (Object.keys(fields).length > 0) return { status: 'error', reason: 'validation', fields }
+  if (Object.keys(fields).length > 0) return { status: 'error', reason: 'validation', fields, values }
 
   try {
     const payload = await getPayloadClient()
     await payload.create({
       collection: 'kontaktanfragen',
-      data: { name, email, telefon, nachricht, status: 'neu' },
+      data: { name, email, telefon, nachricht, herkunft: herkunft || undefined, status: 'neu' },
     })
-    await sendKontaktMails({ name, email, telefon: telefon || undefined, nachricht })
+    await sendKontaktMails({
+      name,
+      email,
+      telefon: telefon || undefined,
+      nachricht,
+      herkunft: herkunft || undefined,
+    })
     return { status: 'success' }
   } catch (err) {
     if (process.env.NODE_ENV !== 'production') {
       console.error('[kontakt] create failed:', err instanceof Error ? err.message : err)
     }
-    return { status: 'error', reason: 'server' }
+    return { status: 'error', reason: 'server', values }
   }
 }
 
@@ -95,6 +98,17 @@ export async function submitAnmeldung(_prev: FormState, formData: FormData): Pro
   const firma = str(formData.get('firma'))
   const anzahlPersonen = int(str(formData.get('anzahlPersonen')), 1)
   const bemerkung = str(formData.get('bemerkung'))
+  const agb = str(formData.get('agb'))
+
+  const values = {
+    vorname,
+    nachname,
+    email,
+    telefon,
+    firma,
+    anzahlPersonen: String(anzahlPersonen),
+    bemerkung,
+  }
 
   const fields: Record<string, string> = {}
   if (!vorname) fields.vorname = 'required'
@@ -102,11 +116,12 @@ export async function submitAnmeldung(_prev: FormState, formData: FormData): Pro
   if (!email) fields.email = 'required'
   else if (!EMAIL_RE.test(email)) fields.email = 'invalid'
   if (!veranstaltungId) fields.veranstaltung = 'required'
-  if (Object.keys(fields).length > 0) return { status: 'error', reason: 'validation', fields }
+  if (!agb) fields.agb = 'required'
+  if (Object.keys(fields).length > 0) return { status: 'error', reason: 'validation', fields, values }
 
   try {
     const payload = await getPayloadClient()
-    await payload.create({
+    const created = await payload.create({
       collection: 'anmeldungen',
       data: {
         veranstaltung: veranstaltungId,
@@ -117,13 +132,18 @@ export async function submitAnmeldung(_prev: FormState, formData: FormData): Pro
         firma: firma || undefined,
         anzahlPersonen,
         bemerkung: bemerkung || undefined,
+        agbAkzeptiert: true,
         status: 'neu',
       },
     })
 
+    // Anmelde-Code aus der Payload-ID — eindeutig, zum Vorzeigen vor Ort.
+    const referenz = `RAI-${String(created.id).padStart(5, '0')}`
+
     let titel = 'Veranstaltung'
     let datum: string | undefined
     let ort: string | undefined
+    let preis: string | undefined
     try {
       const v = await payload.findByID({
         collection: 'veranstaltungen',
@@ -133,11 +153,21 @@ export async function submitAnmeldung(_prev: FormState, formData: FormData): Pro
       titel = typeof v?.titel === 'string' ? v.titel : titel
       datum = formatDatum(v?.datumVon)
       ort = typeof v?.ort === 'string' ? v.ort : undefined
+      // Anzeige wie im Frontend: 0 = „Kostenlos", sonst „CHF X"; preisInfo ergänzt.
+      if (typeof v?.preis === 'number') {
+        preis = v.preis === 0 ? 'Kostenlos' : `CHF ${v.preis}`
+        if (typeof v?.preisInfo === 'string' && v.preisInfo.trim()) {
+          preis += ` (${v.preisInfo.trim()})`
+        }
+      } else if (typeof v?.preisInfo === 'string' && v.preisInfo.trim()) {
+        preis = v.preisInfo.trim()
+      }
     } catch {
       /* Detail-Auflösung optional. */
     }
 
     await sendAnmeldungMails({
+      referenz,
       vorname,
       nachname,
       email,
@@ -148,6 +178,7 @@ export async function submitAnmeldung(_prev: FormState, formData: FormData): Pro
       veranstaltungTitel: titel,
       veranstaltungDatum: datum,
       veranstaltungOrt: ort,
+      veranstaltungPreis: preis,
     })
 
     return { status: 'success' }
@@ -155,6 +186,6 @@ export async function submitAnmeldung(_prev: FormState, formData: FormData): Pro
     if (process.env.NODE_ENV !== 'production') {
       console.error('[anmeldung] create failed:', err instanceof Error ? err.message : err)
     }
-    return { status: 'error', reason: 'server' }
+    return { status: 'error', reason: 'server', values }
   }
 }

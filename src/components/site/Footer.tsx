@@ -26,7 +26,7 @@ export function Footer({ siteTitle, kontakt, angebote = [] }: Props) {
           <Link href="/" className="text-2xl text-ink">
             <SiteTitle title={siteTitle} />
           </Link>
-          <p className="max-w-[34ch] text-[15px] font-normal leading-relaxed text-body">
+          <p className="max-w-[34ch] text-[16px] font-normal leading-relaxed text-body">
             Beratung &amp; Schulung für eine einfache, krankenkassentaugliche Pflegedokumentation.
           </p>
           <a
@@ -43,7 +43,7 @@ export function Footer({ siteTitle, kontakt, angebote = [] }: Props) {
         {/* Angebote */}
         <nav className="flex flex-col gap-4 lg:col-span-3">
           <h3 className="footer-heading">Angebote</h3>
-          <ul className="flex flex-col gap-2.5 text-[15px]">
+          <ul className="flex flex-col gap-2.5 text-[16px]">
             {angebote.map((a) => (
               <li key={a.id}>
                 <Link href={`/${a.slug}`} className="footer-link">
@@ -57,7 +57,7 @@ export function Footer({ siteTitle, kontakt, angebote = [] }: Props) {
         {/* Kontaktinfos */}
         <div className="flex flex-col gap-4 lg:col-span-3">
           <h3 className="footer-heading">Kontakt</h3>
-          <ul className="flex flex-col gap-3 text-[15px] text-body">
+          <ul className="flex flex-col gap-3 text-[16px] text-body">
             <li className="flex items-center gap-3">
               <Mail size={17} className="shrink-0 text-petrol" />
               <a href={`mailto:${email}`} className="footer-link">
@@ -80,7 +80,7 @@ export function Footer({ siteTitle, kontakt, angebote = [] }: Props) {
         {/* Rechtslinks */}
         <nav className="flex flex-col gap-4 lg:col-span-2">
           <h3 className="footer-heading">Rechtliches</h3>
-          <ul className="flex flex-col gap-2.5 text-[15px]">
+          <ul className="flex flex-col gap-2.5 text-[16px]">
             <li>
               <Link href="/agb" className="footer-link">
                 AGB
@@ -102,7 +102,7 @@ export function Footer({ siteTitle, kontakt, angebote = [] }: Props) {
 
       {/* Copyright-Leiste */}
       <div className="border-t border-ink/10">
-        <div className="site-container flex flex-col items-center justify-between gap-2 py-5 text-[13px] text-muted sm:flex-row">
+        <div className="site-container flex flex-col items-center justify-between gap-2 py-5 text-[15px] text-muted sm:flex-row">
           <p>© {jahr} BURGMEIJER RAI-Experte. Alle Rechte vorbehalten.</p>
           <a
             href={LINKS.webtree}

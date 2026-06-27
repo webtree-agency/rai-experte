@@ -446,6 +446,10 @@ export interface Anmeldungen {
   firma?: string | null;
   anzahlPersonen?: number | null;
   bemerkung?: string | null;
+  /**
+   * Beim Anmelden bestätigt.
+   */
+  agbAkzeptiert?: boolean | null;
   status?: ('neu' | 'bestätigt' | 'storniert') | null;
   updatedAt: string;
   createdAt: string;
@@ -462,6 +466,10 @@ export interface Kontaktanfragen {
   email: string;
   telefon?: string | null;
   nachricht: string;
+  /**
+   * Angebot/Seite, von der die Anfrage kam (leer = Startseite).
+   */
+  herkunft?: string | null;
   status?: ('neu' | 'erledigt') | null;
   updatedAt: string;
   createdAt: string;
@@ -716,6 +724,7 @@ export interface AnmeldungenSelect<T extends boolean = true> {
   firma?: T;
   anzahlPersonen?: T;
   bemerkung?: T;
+  agbAkzeptiert?: T;
   status?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -729,6 +738,7 @@ export interface KontaktanfragenSelect<T extends boolean = true> {
   email?: T;
   telefon?: T;
   nachricht?: T;
+  herkunft?: T;
   status?: T;
   updatedAt?: T;
   createdAt?: T;

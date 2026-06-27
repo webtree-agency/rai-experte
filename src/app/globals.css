@@ -338,3 +338,17 @@ p {
     transition: none;
   }
 }
+
+/* ========================================================================
+   Heller-Seiten-Header — auf Seiten mit hellem Hintergrund (z. B. 404) wird
+   der sonst transparente Header mit weisser Schrift unlesbar. Eine Seite
+   markiert sich mit [data-light-header]; der Header schaltet dann via :has()
+   ohne JS (flash-frei) auf dunkle Schrift um.
+   ======================================================================== */
+body:has([data-light-header]) header a,
+body:has([data-light-header]) header button {
+  color: var(--color-ink);
+}
+body:has([data-light-header]) header a:hover {
+  color: var(--color-petrol);
+}

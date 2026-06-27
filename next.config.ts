@@ -7,6 +7,8 @@ const nextConfig: NextConfig = {
   output: 'standalone',
   experimental: {
     reactCompiler: false,
+    // Globale 404 (app/global-not-found.tsx) — nötig bei mehreren Root-Layouts.
+    globalNotFound: true,
   },
   images: {
     formats: ['image/avif', 'image/webp'],

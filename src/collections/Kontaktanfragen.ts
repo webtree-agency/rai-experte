@@ -11,7 +11,7 @@ export const Kontaktanfragen: CollectionConfig = {
   labels: { singular: 'Kontaktanfrage', plural: 'Kontaktanfragen' },
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'email', 'telefon', 'status', 'createdAt'],
+    defaultColumns: ['name', 'email', 'herkunft', 'status', 'createdAt'],
     group: 'Anmeldungen',
     description: 'Eingegangene Kontaktanfragen aus dem Formular.',
   },
@@ -26,6 +26,16 @@ export const Kontaktanfragen: CollectionConfig = {
     { name: 'email', type: 'email', required: true },
     { name: 'telefon', type: 'text' },
     { name: 'nachricht', type: 'textarea', required: true },
+    {
+      name: 'herkunft',
+      type: 'text',
+      label: 'Anfrage zu',
+      admin: {
+        position: 'sidebar',
+        readOnly: true,
+        description: 'Angebot/Seite, von der die Anfrage kam (leer = Startseite).',
+      },
+    },
     {
       name: 'status',
       type: 'select',

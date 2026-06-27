@@ -77,13 +77,13 @@ export default async function AngebotPage({ params }: { params: Promise<{ slug: 
 
             {/* Rechts: Kontaktformular */}
             <Reveal delay={100}>
-              <div className="rounded-2xl bg-surface-blue p-6 sm:p-8 lg:p-10">
+              <div className="rounded-2xl bg-surface-gray p-6 sm:p-8 lg:p-10">
                 <h2 className="heading-sub text-petrol">Kontakt aufnehmen</h2>
                 <p className="mt-3 text-[17px] font-normal text-body">
                   Fragen zu diesem Angebot? Schreiben Sie mir – ich melde mich gerne bei Ihnen.
                 </p>
                 <div className="mt-6">
-                  <KontaktFormular />
+                  <KontaktFormular herkunft={`Angebot ${angebot.nummer}: ${angebot.titel}`} />
                 </div>
               </div>
             </Reveal>

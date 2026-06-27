@@ -40,6 +40,12 @@ export const Anmeldungen: CollectionConfig = {
     { name: 'anzahlPersonen', type: 'number', defaultValue: 1, min: 1 },
     { name: 'bemerkung', type: 'textarea' },
     {
+      name: 'agbAkzeptiert',
+      type: 'checkbox',
+      label: 'AGB akzeptiert',
+      admin: { position: 'sidebar', readOnly: true, description: 'Beim Anmelden bestätigt.' },
+    },
+    {
       name: 'status',
       type: 'select',
       defaultValue: 'neu',
