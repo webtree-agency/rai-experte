@@ -1,0 +1,19 @@
+name: next-version-guard
+# Sicherheits-Gate: blockt verwundbare Next.js-Versionen (Server-Actions-RCE < 15.4.11).
+# Hintergrund: 2x Server-Kompromittierung (2026-06-03, 2026-07-01) via veraltete Next-Version.
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Block vulnerable Next.js versions
+        run: |
+          RANGE=$(node -p "const p=require('./package.json');((p.dependencies||{}).next)||((p.devDependencies||{}).next)||''")
+          if [ -z "$RANGE" ]; then echo "kein next-dependency -> skip"; exit 0; fi
+          VER=$(echo "$RANGE" | sed 's/[^0-9.]//g')
+          echo "next deklariert: $RANGE -> $VER"
+          node -e "const p='$VER'.split('.').map(Number); const bad=p[0]<=14||(p[0]===15&&(p[1]<4||(p[1]===4&&(p[2]||0)<11))); if(bad){console.error('::error::SECURITY-GATE: next '+'$VER'+' ist verwundbar (<15.4.11, Server-Actions-RCE). Bitte auf >=15.4.11 bumpen.');process.exit(1)} console.log('OK: next '+'$VER'+' ist gepatcht')"
