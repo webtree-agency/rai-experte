@@ -45,6 +45,13 @@ RUN S3_BUCKET=placeholder \
     S3_ENDPOINT=https://placeholder.example \
     pnpm payload generate:importmap
 
+# ─── Security-Gate ────────────────────────────────────────────────
+# Blockt verwundbare Next.js-Versionen (Server-Actions-RCE < 15.4.11) BEIM BUILD.
+# Failt der Build, schlaegt der Dokploy-Deploy fehl und die alte, funktionierende
+# Version bleibt live (0 Downtime). Referenz: Server-Kompromittierungen 2026-06-03 + 2026-07-01.
+# EINFUEGEN im builder-Stage, direkt VOR `RUN pnpm build` (node_modules muss da sein).
+RUN node -e "let v;try{v=require('next/package.json').version}catch(e){console.log('security-gate: kein next, skip');process.exit(0)}var p=v.split('.').map(Number);if(p[0]<=14||(p[0]===15&&(p[1]<4||(p[1]===4&&p[2]<11)))){console.error('SECURITY-GATE: next '+v+' verwundbar (<15.4.11 Server-Actions-RCE). Build blockiert. Auf >=15.4.11 bumpen.');process.exit(1)}console.log('security-gate ok: next '+v)"
+
 RUN pnpm run build
 
 
