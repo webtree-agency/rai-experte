@@ -27,5 +27,5 @@ export const LINKS = {
   angebot: '/#angebot',
   ubermich: '/#ubermich',
   kontakt: '/#kontakt',
-  webtree: 'https://webtree.ch',
+  webtree: 'https://www.webtree.ch/webdesign-zuerich',
 } as const
