@@ -7,6 +7,14 @@ import type { MetadataRoute } from 'next'
 import { getAngebote } from '@/lib/cms'
 import { SITE_URL } from '@/lib/site'
 
+/**
+ * Zur Laufzeit rendern (wie das Frontend-Layout). Sonst prerendert Next die
+ * Sitemap im Docker-Build — dort ist die Payload-DB nicht erreichbar,
+ * getAngebote() faellt auf [] zurueck und die Sitemap bleibt dauerhaft ohne
+ * Angebots-Seiten. Genau das war bis 04.08.2026 live.
+ */
+export const dynamic = 'force-dynamic'
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const angebote = await getAngebote()
   const now = new Date()
