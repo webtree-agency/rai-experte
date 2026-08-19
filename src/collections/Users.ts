@@ -6,7 +6,14 @@ import type { CollectionConfig } from 'payload'
 export const Users: CollectionConfig = {
   slug: 'users',
   labels: { singular: 'Benutzer', plural: 'Benutzer' },
-  auth: true,
+  /*
+   * Brute-Force-Bremse: nach 5 Fehlversuchen 10 Minuten gesperrt. Ohne das
+   * nimmt Payload unbegrenzt viele Anmeldeversuche entgegen.
+   */
+  auth: {
+    maxLoginAttempts: 5,
+    lockTime: 1000 * 60 * 10,
+  },
   admin: {
     useAsTitle: 'email',
     group: 'System',
